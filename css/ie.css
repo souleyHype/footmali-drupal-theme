@@ -1,0 +1,10 @@
+.entry-item .thumb-icon:before {
+        padding-right: 0px;
+}
+.main-menu > li > a > span{
+	display: none;
+}
+.kopa-header-left > span{
+	right: -10.5px;
+	border-right-width: 11px;
+}

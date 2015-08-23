@@ -1,0 +1,1 @@
+# Footmali Drupal Theme
