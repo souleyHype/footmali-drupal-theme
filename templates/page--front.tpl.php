@@ -84,9 +84,16 @@ $articles_query->entityCondition('entity_type', 'node')
     ->range(0, 15)
     ->propertyOrderBy('created', 'DESC');
 
+$articles = array();
+$featured_articles = array();
+$top_articles = array();
+$headlines = array();
+
 $articles_result = $articles_query->execute();
-$articles_ids = array_keys($articles_result['node']);
-$articles = node_load_multiple($articles_ids);
+if(!empty($articles_result) && is_array($articles_result)){
+	$articles_ids = array_keys($articles_result['node']);
+	$articles = node_load_multiple($articles_ids);
+}
 
 $featured_articles = array_slice($articles, 0, 5, true);
 $top_articles = array_slice($articles, 5, 3, true);
@@ -103,6 +110,7 @@ $headlines = array_slice($articles, 8, 7, true);
             <div class="widget-area-1">
                 <div class="widget kopa-sync-carousel-widget">
                     <div class="owl-carousel sync1">
+                    <?php if(count($featured_articles) > 0): ?>
                         <?php foreach($featured_articles as $featured_article): ?>
                             <div class="item">
                                 <article class="entry-item">
@@ -122,6 +130,7 @@ $headlines = array_slice($articles, 8, 7, true);
                                 </article>
                             </div>
                         <?php endforeach; ?>
+                    <?php endif; ?>
                     </div>
                     <!-- sync1 -->
                     <div class="loading">
@@ -154,6 +163,7 @@ $headlines = array_slice($articles, 8, 7, true);
                         <div class="widget kopa-article-list-widget article-list-1">
                             <h3 class="widget-title style12"><?php echo t('Top Stories'); ?><span class="ttg"></span></h3>
                             <ul class="clearfix">
+                            <?php if(count($top_articles) > 0): ?>
                                 <?php foreach($top_articles as $top_article): ?>
                                     <li>
                                         <article class="entry-item">
@@ -183,6 +193,7 @@ $headlines = array_slice($articles, 8, 7, true);
                                         </article>
                                     </li>
                                 <?php endforeach; ?>
+                            <?php endif; ?>
                             </ul>
                         </div>
                         <!-- widget -->
@@ -297,11 +308,13 @@ $headlines = array_slice($articles, 8, 7, true);
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="headlines">
                                         <ul class="kopa-list clearfix">
+                                        <?php if(count($headlines) > 0): ?>
                                             <?php foreach($headlines as $headline): ?>
                                                 <li>
                                                     <a href="<?php echo drupal_get_path_alias("node/{$headline->nid}"); ?>"><?php echo $headline->title; ?></a>
                                                 </li>
                                             <?php endforeach; ?>
+                                        <? endif; ?>
                                         </ul>
                                     </div>
                                     <!-- tab-pane -->
