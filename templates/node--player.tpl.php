@@ -83,7 +83,14 @@
 <?php
 
 $position = taxonomy_term_load($field_position[0]['tid']);
-//dpm(array($node, $field_position));
+$height = '';
+
+if(!empty($field_height[0]['value'])){
+    $height = explode('.', $field_height[0]['value']);
+    $height = $height[0] . 'm ' . $height[1];
+}
+
+$player_squad = footmali_get_player_squad($nid);
 ?>
 <h1><?php echo $title; ?></h1>
 <div class="row">
@@ -94,14 +101,47 @@ $position = taxonomy_term_load($field_position[0]['tid']);
         <div class="player-profile" style="width: 100%">
             <h3><?php echo t('Profil'); ?></h3>
             <ul class="clearfix">
-                <li>
-                    <div class="p-left"><?php echo t('Nationalité'); ?>:</div>
-                    <div class="p-right"><?php echo $field_country[0]['value']; ?></div>
-                </li>
-                <li>
-                    <div class="p-left"><?php echo t('Poste'); ?>:</div>
-                    <div class="p-right"><?php echo $position->name; ?></div>
-                </li>
+                <?php if($field_country && !empty($field_country[0]['value'])): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Nationalité'); ?>:</div>
+                        <div class="p-right"><?php echo $field_country[0]['value']; ?></div>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($player_squad && !empty($player_squad)): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Club'); ?>:</div>
+                        <div class="p-right"><?php echo $player_squad->title; ?></div>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($field_dob && !empty($field_dob[0]['value'])): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Date Naissance'); ?>:</div>
+                        <div class="p-right"><?php echo date('d/m/Y', strtotime($field_dob[0]['value'])); ?></div>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($position->name && !empty($position->name)): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Poste'); ?>:</div>
+                        <div class="p-right"><?php echo $position->name; ?></div>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($height && !empty($height)): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Taille'); ?>:</div>
+                        <div class="p-right"><?php echo $height; ?></div>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($field_weight && !empty($field_weight[0]['value'])): ?>
+                    <li>
+                        <div class="p-left"><?php echo t('Poid'); ?>:</div>
+                        <div class="p-right"><?php echo $field_weight[0]['value'] . 'kg'; ?></div>
+                    </li>
+                <?php endif; ?>
             </ul>
 
         </div>
