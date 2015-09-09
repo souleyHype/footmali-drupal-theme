@@ -40,11 +40,11 @@ function footmali_preprocess_page(&$variables) {
             $main_links .= '<li><a href="' . url($menu['link']['link_path']) . '"><span>' . $menu['link']['link_title'] .'</span></a>';
 
             if(count($menu['below']) > 0):
-                    $main_links .= '<ul class="sub-menu">';
-                        foreach($menu['below'] as $sub_menu):
-                            $main_links .= '<li><a href="' . drupal_get_path_alias($sub_menu['link']['link_path'])  . '">' . $sub_menu['link']['link_title'] . '</a></li>';
-                        endforeach;
-                    $main_links .= '</ul>';
+                $main_links .= '<ul class="sub-menu">';
+                foreach($menu['below'] as $sub_menu):
+                    $main_links .= '<li><a href="' . drupal_get_path_alias($sub_menu['link']['link_path'])  . '">' . $sub_menu['link']['link_title'] . '</a></li>';
+                endforeach;
+                $main_links .= '</ul>';
             endif;
             $main_links .= '</li>';
         endforeach;
@@ -77,7 +77,7 @@ function footmali_preprocess_node(&$variables) {
 /**
  * Output breadcrumb as an unorderd list with unique and first/last classes
  * Ouptuts site breadcrumbs with current page title appended onto trail
- * 
+ *
  * @param $variables
  * @return string
  */
@@ -97,7 +97,7 @@ function footmali_breadcrumb($variables) {
             if ($i == 0) {
                 $crumbs .= ' first';
             }elseif ($i+1 == $array_size) {
-              $crumbs .= ' last';
+                $crumbs .= ' last';
             }
             $crumbs .=  '">' . $breadcrumb[$i] . '</span> &nbsp;|&nbsp; ';
             $i++;
@@ -248,7 +248,7 @@ function footmali_get_category_articles($tid){
         $operator = 'IN';
 
         foreach($child_categories as $category){
-           array_push($categories, $category->tid);
+            array_push($categories, $category->tid);
         }
 
         $tid = $categories;
@@ -360,4 +360,59 @@ function footmali_get_entity_articles($nid){
     $articles = count($article_ids) > 0 ? node_load_multiple($article_ids) : false;
 
     return $articles;
+}
+
+function footmali_get_player_other_squad($nid){
+    $query  = "SELECT other_club.field_other_club_nid team, node.nid player ";
+    $query .= "FROM node ";
+    $query .= "JOIN field_data_field_other_club as other_club ";
+    $query .= "ON node.nid = other_club.entity_id ";
+    $query .= "WHERE node.type = 'player' ";
+    $query .= "AND node.nid = :nid ";
+
+    $query_result = db_query($query, array(':nid' => $nid));
+    $squad_id = '';
+
+    foreach($query_result as $result){
+        $squad_id = $result->team;
+    }
+
+    $squad = !empty($squad_id) ?  node_load($squad_id) : false;
+
+    return $squad;
+}
+
+function footmali_get_player_squad($nid){
+    $query  = "SELECT YEAR(season.field_season_value) season, steam.field_squad_team_nid team, splayer.field_squad_player_nid player ";
+    $query .= "FROM node ";
+    $query .= "JOIN field_data_field_squad_team as steam ";
+    $query .= "ON node.nid = steam.entity_id ";
+    $query .= "JOIN field_data_field_team_type as team_type ";
+    $query .= "ON steam.field_squad_team_nid = team_type.entity_id ";
+    $query .= "JOIN field_data_field_squad_players as splayers ";
+    $query .= "ON node.nid = splayers.entity_id ";
+    $query .= "JOIN field_data_field_squad_player as splayer ";
+    $query .= "ON splayers.field_squad_players_value = splayer.entity_id ";
+    $query .= "JOIN field_data_field_season as season ";
+    $query .= "ON node.nid = season.entity_id ";
+    $query .= "WHERE node.type = 'squad' ";
+    $query .= "AND splayer.field_squad_player_nid = :nid ";
+    $query .= "AND team_type.field_team_type_value = 'club' ";
+    $query .= "ORDER BY YEAR(season.field_season_value) DESC ";
+    $query .= "LIMIT 1";
+
+    $query_result = db_query($query, array(':nid' => $nid));
+    $squad_id = '';
+
+    foreach($query_result as $result){
+        $squad_id = $result->team;
+    }
+
+    $squad = !empty($squad_id) ?  node_load($squad_id) : false;
+
+    if(!$squad){
+        $squad = footmali_get_player_other_squad($nid);
+    }
+
+    return $squad;
 }
