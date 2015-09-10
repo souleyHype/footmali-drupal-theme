@@ -63,6 +63,11 @@ global $theme_path;
         </style>
     </noscript>
     <script src="/<?php echo $theme_path; ?>/js/modernizr.custom.js"></script>
+    <script>
+        var footmali = {
+            template_directory: "/<?php echo $theme_path; ?>/"
+        };
+    </script>
 </head>
 <body class="<?php echo $is_front ? 'kopa-home-page' : 'kopa-sub-page kopa-single-page';?> <?php print $classes; ?>" <?php print $attributes; ?>>
 

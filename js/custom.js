@@ -69,7 +69,7 @@
                         }
                     },
                     "url": {
-                        "template_directory_uri":"/sites/all/themes/footmali/"
+                        "template_directory_uri": window.footmali.template_directory
                     }
                 };
 
