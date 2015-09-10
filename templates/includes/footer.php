@@ -231,7 +231,7 @@
                     </div>
                 </div>
 
-                <?php if(function_exists(fboauth_action_display)): ?>
+                <?php if(function_exists('fboauth_action_display')): ?>
                     <div class="social-login">
                         <?php print fboauth_action_display('connect'); ?>
                     </div>
@@ -289,7 +289,7 @@
                         <span class="omb_spanOr">or</span>
                     </div>
                 </div>
-                <?php if(function_exists(fboauth_action_display)): ?>
+                <?php if(function_exists('fboauth_action_display')): ?>
                     <div class="social-login">
                         <?php print fboauth_action_display('connect'); ?>
                     </div>
