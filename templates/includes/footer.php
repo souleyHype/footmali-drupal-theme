@@ -1,178 +1,18 @@
 <div id="bottom-sidebar">
-
     <div class="bottom-area-2">
 
         <div class="wrapper">
-
-            <div class="row">
-
-                <div class="widget-area-18">
-
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">sports</h3>
-                        <ul class="clearfix">
-                            <li>
-                                <a href="#">FIFA</a>
-                            </li>
-                            <li>
-                                <a href="#">Madden NFL</a>
-                            </li>
-                            <li>
-                                <a href="#">PGA TOUR</a>
-                            </li>
-                            <li>
-                                <a href="#">NHL®</a>
-                            </li>
-                            <li>
-                                <a href="#">NBA Live</a>
-                            </li>
-                            <li>
-                                <a href="#">EA SPORTS UFC</a>
-                            </li>
-                            <li>
-                                <a href="#">2014 FIFA World Cup</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- widget-area-18 -->
-
-                <div class="widget-area-19">
-
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">our team</h3>
-                        <ul class="clearfix">
-                            <li>
-                                <a href="#">BC Lions</a>
-                            </li>
-                            <li>
-                                <a href="#">Edmonton Eskimos</a>
-                            </li>
-                            <li>
-                                <a href="#">Calgary Stampeders</a>
-                            </li>
-                            <li>
-                                <a href="#">Hamilton Tiger</a>
-                            </li>
-                            <li>
-                                <a href="#">Winnipeg Blue Bombers</a>
-                            </li>
-                            <li>
-                                <a href="#">Hamilton Tiger-Cats</a>
-                            </li>
-                            <li>
-                                <a href="#">Toronto Argonauts</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- widget-area-19 -->
-
-                <div class="widget-area-20">
-
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">QUICK SHOP</h3>
-                        <ul class="clearfix">
-                            <li>
-                                <a href="#">CrossFit</a>
-                            </li>
-                            <li>
-                                <a href="#">Reebok One Series</a>
-                            </li>
-                            <li>
-                                <a href="#">Workout</a>
-                            </li>
-                            <li>
-                                <a href="#">Spartan Race</a>
-                            </li>
-                            <li>
-                                <a href="#">Les Mills</a>
-                            </li>
-                            <li>
-                                <a href="#">NPC</a>
-                            </li>
-                            <li>
-                                <a href="#">The Pump</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- widget-area-20 -->
-
-                <div class="widget-area-21">
-
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">Our League</h3>
-                        <ul class="clearfix">
-                            <li>
-                                <a href="#">Tickets</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact Us</a>
-                            </li>
-                            <li>
-                                <a href="#">FAQs</a>
-                            </li>
-                            <li>
-                                <a href="#">Employment</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="#">Terms of Use</a>
-                            </li>
-                            <li>
-                                <a href="#">Grey Cup Central</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- widget-area-21 -->
-
-            </div>
-            <!-- row -->
-
+            <?php //include_once('partials/_footer_sitemap.php'); ?>
         </div>
         <!-- wrapper -->
-
     </div>
     <!-- bottom-area-2 -->
 
     <div class="bottom-area-3">
-
         <div class="wrapper">
-
-            <div class="widget kopa-newsletter-widget">
-                <div class="newsletter-intro">
-                    <span class="news-icon fa fa-envelope"></span>
-                    <p>Subscribe to our email newsletter</p>
-                </div>
-                <div class="newsletter-content">
-                    <span class="input-icon fa fa-envelope"></span>
-                    <form class="newsletter-form clearfix" method="post" action="#">
-                        <div class="input-area">
-                            <input type="text" onBlur="if (this.value == '')
-                                this.value = this.defaultValue;" onFocus="if (this.value == this.defaultValue)
-                                this.value = '';" value="Enter Your Email Address..." size="40" class="name"  name="name">
-                        </div>
-                        <button type="submit" class="search-submit">
-                            <span>Sign me up</span>
-                            <span class="fa fa-chevron-right"></span>
-                        </button>
-                    </form>
-                    <div id="newsletter-response"></div>
-                </div>
-            </div>
-            <!-- widget -->
-
+            <?php //include_once('partials/_footer_newsletter.php'); ?>
         </div>
         <!-- wrapper -->
-
     </div>
     <!-- bottom-area-3 -->
 
@@ -183,7 +23,7 @@
 
     <div class="wrapper clearfix">
 
-        <p id="copyright" class="">Copyright © <?php echo date('Y'); ?> . All Rights Reserved.</p>
+        <p id="copyright" class="">Copyright © Footmali.com <?php echo date('Y'); ?>. All Rights Reserved.</p>
 
     </div>
     <!-- wrapper -->
