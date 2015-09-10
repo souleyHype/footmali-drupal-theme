@@ -90,7 +90,7 @@ $top_articles = array();
 $headlines = array();
 
 $articles_result = $articles_query->execute();
-if( !empty($articles_result) && is_array($articles_result)){
+if( !empty($articles_result) && is_array($articles_result) ){
 	$articles_ids = array_keys($articles_result['node']);
 	$articles = node_load_multiple($articles_ids);
 
@@ -314,14 +314,14 @@ if( !empty($articles_result) && is_array($articles_result)){
                                                     <a href="<?php echo drupal_get_path_alias("node/{$headline->nid}"); ?>"><?php echo $headline->title; ?></a>
                                                 </li>
                                             <?php endforeach; ?>
-                                        <? endif; ?>
+                                        <?php endif; ?>
                                         </ul>
                                     </div>
                                     <!-- tab-pane -->
                                     <div class="tab-pane" id="news">
                                         <?php
-                                        $most_read_block = module_invoke('views', 'block_view', 'news-most_read_articles');
-                                        print render($most_read_block);
+                                            $most_read_block = module_invoke('views', 'block_view', 'news-most_read_articles');
+                                            print render($most_read_block);
                                         ?>
                                     </div>
                                     <!-- tab-pane -->
