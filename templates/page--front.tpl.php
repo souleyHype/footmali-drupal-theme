@@ -90,14 +90,14 @@ $top_articles = array();
 $headlines = array();
 
 $articles_result = $articles_query->execute();
-if(!empty($articles_result) && is_array($articles_result)){
+if( !empty($articles_result) && is_array($articles_result)){
 	$articles_ids = array_keys($articles_result['node']);
 	$articles = node_load_multiple($articles_ids);
-}
 
-$featured_articles = array_slice($articles, 0, 5, true);
-$top_articles = array_slice($articles, 5, 3, true);
-$headlines = array_slice($articles, 8, 7, true);
+    $featured_articles = array_slice($articles, 0, 5, true);
+    $top_articles = array_slice($articles, 5, 3, true);
+    $headlines = array_slice($articles, 8, 7, true);
+}
 
 ?>
 
