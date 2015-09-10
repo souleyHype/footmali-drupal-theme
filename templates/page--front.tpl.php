@@ -160,10 +160,11 @@ if( !empty($articles_result) && is_array($articles_result) ){
 
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 
+
+                        <?php if(count($top_articles) > 0): ?>
                         <div class="widget kopa-article-list-widget article-list-1">
                             <h3 class="widget-title style12"><?php echo t('Top Stories'); ?><span class="ttg"></span></h3>
                             <ul class="clearfix">
-                            <?php if(count($top_articles) > 0): ?>
                                 <?php foreach($top_articles as $top_article): ?>
                                     <li>
                                         <article class="entry-item">
@@ -193,154 +194,92 @@ if( !empty($articles_result) && is_array($articles_result) ){
                                         </article>
                                     </li>
                                 <?php endforeach; ?>
-                            <?php endif; ?>
                             </ul>
                         </div>
                         <!-- widget -->
+                        <?php endif; ?>
 
-                        <div class="widget kopa-slide-2-widget">
-                            <h3 class="widget-title style11">video<span class="ttg"></span></h3>
-                            <div class="owl-carousel owl-carousel-7">
-                                <div class="item">
-                                    <article class="entry-item video-post">
-                                        <div class="entry-thumb">
-                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                                            <a class="thumb-icon" href="#"></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                                            <footer>
-                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                                            </footer>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="entry-item video-post">
-                                        <div class="entry-thumb">
-                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                                            <a class="thumb-icon" href="#"></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                                            <footer>
-                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                                            </footer>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="entry-item video-post">
-                                        <div class="entry-thumb">
-                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                                            <a class="thumb-icon" href="#"></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                                            <footer>
-                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                                            </footer>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="entry-item video-post">
-                                        <div class="entry-thumb">
-                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                                            <a class="thumb-icon" href="#"></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                                            <footer>
-                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                                            </footer>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="entry-item video-post">
-                                        <div class="entry-thumb">
-                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                                            <a class="thumb-icon" href="#"></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                                            <footer>
-                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                                            </footer>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <!-- owl-carousel-7 -->
-                        </div>
-                        <!-- widget -->
-                    </div>
+<!--                        <div class="widget kopa-slide-2-widget">-->
+<!--                            <h3 class="widget-title style11">video<span class="ttg"></span></h3>-->
+<!--                            <div class="owl-carousel owl-carousel-7">-->
+<!--                                <div class="item">-->
+<!--                                    <article class="entry-item video-post">-->
+<!--                                        <div class="entry-thumb">-->
+<!--                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>-->
+<!--                                            <a class="thumb-icon" href="#"></a>-->
+<!--                                        </div>-->
+<!--                                        <div class="entry-content">-->
+<!--                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>-->
+<!--                                            <footer>-->
+<!--                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
+<!--                                            </footer>-->
+<!--                                        </div>-->
+<!--                                    </article>-->
+<!--                                </div>-->
+<!--                                <div class="item">-->
+<!--                                    <article class="entry-item video-post">-->
+<!--                                        <div class="entry-thumb">-->
+<!--                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>-->
+<!--                                            <a class="thumb-icon" href="#"></a>-->
+<!--                                        </div>-->
+<!--                                        <div class="entry-content">-->
+<!--                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>-->
+<!--                                            <footer>-->
+<!--                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
+<!--                                            </footer>-->
+<!--                                        </div>-->
+<!--                                    </article>-->
+<!--                                </div>-->
+<!--                                <div class="item">-->
+<!--                                    <article class="entry-item video-post">-->
+<!--                                        <div class="entry-thumb">-->
+<!--                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>-->
+<!--                                            <a class="thumb-icon" href="#"></a>-->
+<!--                                        </div>-->
+<!--                                        <div class="entry-content">-->
+<!--                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>-->
+<!--                                            <footer>-->
+<!--                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
+<!--                                            </footer>-->
+<!--                                        </div>-->
+<!--                                    </article>-->
+<!--                                </div>-->
+<!--                                <div class="item">-->
+<!--                                    <article class="entry-item video-post">-->
+<!--                                        <div class="entry-thumb">-->
+<!--                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>-->
+<!--                                            <a class="thumb-icon" href="#"></a>-->
+<!--                                        </div>-->
+<!--                                        <div class="entry-content">-->
+<!--                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>-->
+<!--                                            <footer>-->
+<!--                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
+<!--                                            </footer>-->
+<!--                                        </div>-->
+<!--                                    </article>-->
+<!--                                </div>-->
+<!--                                <div class="item">-->
+<!--                                    <article class="entry-item video-post">-->
+<!--                                        <div class="entry-thumb">-->
+<!--                                            <a href="#"><img src="http://placehold.it/188x147" alt=""></a>-->
+<!--                                            <a class="thumb-icon" href="#"></a>-->
+<!--                                        </div>-->
+<!--                                        <div class="entry-content">-->
+<!--                                            <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>-->
+<!--                                            <footer>-->
+<!--                                                <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
+<!--                                            </footer>-->
+<!--                                        </div>-->
+<!--                                    </article>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <!-- owl-carousel-7 -->-->
+<!--                        </div>-->
+<!--                        <!-- widget -->-->
+<!--                    </div>-->
                     <!-- main-col -->
 
-                    <div class="sidebar widget-area-11">
-                        <div class="widget widget_search style1">
-                            <h3 class="widget-title style3"><span class="fa fa-search"></span>search</h3>
-                            <div class="search-box">
-                                <form action="/" class="search-form clearfix" method="get">
-                                    <input type="text" onblur="if (this.value == '') this.value = this.defaultValue;" onfocus="if (this.value == this.defaultValue) this.value = '';" value="Search..." name="s" class="search-text">
-                                    <button type="submit" class="search-submit">
-                                        <span class="fa fa-search"></span>
-                                    </button>
-                                </form>
-                                <!-- search-form -->
-                            </div>
-                        </div>
-                        <!-- widget -->
-
-                        <div class="widget kopa-ads-widget">
-                            <a href="#"><img src="http://placehold.it/328x274" alt=""></a>
-                        </div>
-                        <!-- widget -->
-
-                        <div class="widget kopa-tab-1-widget">
-                            <div class="kopa-tab style7">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#headlines" data-toggle="tab"><span>headlines</span></a></li>
-                                    <li><a href="#news" data-toggle="tab"><span>plus populare</span></a></li>
-                                </ul>
-                                <!-- nav-tabs -->
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="headlines">
-                                        <ul class="kopa-list clearfix">
-                                        <?php if(count($headlines) > 0): ?>
-                                            <?php foreach($headlines as $headline): ?>
-                                                <li>
-                                                    <a href="<?php echo drupal_get_path_alias("node/{$headline->nid}"); ?>"><?php echo $headline->title; ?></a>
-                                                </li>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                        </ul>
-                                    </div>
-                                    <!-- tab-pane -->
-                                    <div class="tab-pane" id="news">
-                                        <?php
-                                            $most_read_block = module_invoke('views', 'block_view', 'news-most_read_articles');
-                                            print render($most_read_block);
-                                        ?>
-                                    </div>
-                                    <!-- tab-pane -->
-                                </div>
-                            </div>
-                            <!-- kopa-tab -->
-
-                        </div>
-                        <!-- widget -->
-
-                        <div class="widget kopa-social-widget">
-                            <div class="fb-page" data-href="https://www.facebook.com/pages/Footmalicom/59161831864"
-                                 data-width="340" data-hide-cover="false" data-show-facepile="true"
-                                 data-show-posts="false">
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- sidebar -->
+                    <?php include_once('includes/sidebar.php'); ?>
 
                 </div>
                 <!-- row -->
