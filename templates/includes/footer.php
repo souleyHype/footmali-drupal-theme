@@ -231,9 +231,11 @@
                     </div>
                 </div>
 
-                <div class="social-login">
-                    <?php print fboauth_action_display('connect'); ?>
-                </div>
+                <?php if(function_exists(fboauth_action_display)): ?>
+                    <div class="social-login">
+                        <?php print fboauth_action_display('connect'); ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -287,10 +289,11 @@
                         <span class="omb_spanOr">or</span>
                     </div>
                 </div>
-
-                <div class="social-login">
-                    <?php print fboauth_action_display('connect'); ?>
-                </div>
+                <?php if(function_exists(fboauth_action_display)): ?>
+                    <div class="social-login">
+                        <?php print fboauth_action_display('connect'); ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
