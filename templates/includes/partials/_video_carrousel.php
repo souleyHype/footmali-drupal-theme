@@ -2,6 +2,7 @@
 global $theme_path;
 $videos = footmali_get_videos(5);
 ?>
+<?php if(count($videos) > 0): ?>
 <div class="widget kopa-slide-2-widget">
     <h3 class="widget-title style11">videos<span class="ttg"></span></h3>
     <div class="owl-carousel owl-carousel-7">
@@ -42,3 +43,4 @@ $videos = footmali_get_videos(5);
     <!-- owl-carousel-7 -->
 </div>
 <!-- widget -->
+<?php endif; ?>
