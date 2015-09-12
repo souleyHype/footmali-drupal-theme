@@ -1,4 +1,4 @@
-<?php $headline = isset($headline) ? $headline : array(); //temp solution @todo: convert to block or view ?>
+<?php $headlines = footmali_headline_articles(); ?>
 
 <div class="widget kopa-tab-1-widget">
     <div class="kopa-tab style7">

@@ -22,22 +22,13 @@
  * the view is modified.
  */
 
-$video = $row->field_field_video;
+global $theme_path;
+
+$default_image_path = '/' . $theme_path . '/images/default_video_thumb.png';
+$default_image_markup = '<img src="'.$default_image_path.'" width="247" height="210" alt="" data-thmr="thmr_38">';
 $thumbnail_uri = $row->field_field_video[0]['rendered']['#item']['uri'];
 $image = '';
 
-//dpm($row);
-//$row->field_field_video[0]['raw']['thumbnail_path']
-
-//$hero_image = array(
-//    'style_name' => 'video_grid_thumbnail',
-//    'path' => file_build_uri($row->field_field_video[0]['raw']['thumbnail_path']),
-//    'width' => '',
-//    'height' => '',
-//    'alt' => $image['alt'],
-//    'title' => $image['title'],
-//);
-//print theme('image_style',$hero_image);
 
 if($thumbnail_uri){
     $variable = array(
@@ -57,7 +48,7 @@ if($thumbnail_uri){
     <a class="entry-categories" href="#">mlb<span class="ttg"></span></a>
     <div class="entry-thumb">
         <a href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load">
-            <?php echo ! empty($image) ? $image : ''; ?>
+            <?php echo ! empty($image) ? $image : $default_image_markup; ?>
         </a>
         <a href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load thumb-icon style1"></a>
     </div>

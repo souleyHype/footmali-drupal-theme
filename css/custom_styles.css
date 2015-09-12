@@ -64,8 +64,19 @@
     text-align: center;
 }
 
+/*
+* video page
+*/
+.view-display-id-video_page .view-header {
+    margin-bottom: 20px;
+}
+
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;
+    }
+
+    .view-display-id-video_page .view-header {
+        margin-bottom: 10px;
     }
 }
