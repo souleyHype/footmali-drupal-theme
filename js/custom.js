@@ -105,18 +105,18 @@
                         complete: function () {
 
                             var r_ul = $('.kopa-main-nav .sf-menu');
-                            r_ul.find('> li').each(function() {
-                                r_ul.prepend(this);
-                            });
+                            //r_ul.find('> li').each(function() {
+                            //    r_ul.prepend(this);
+                            //});
                             r_ul.superfish({
                                 speed: "fast",
                                 delay: "100"
                             });
 
                             var r_ul2 = $('.kopa-main-nav-2 .sf-menu');
-                            r_ul2.find('> li').each(function() {
-                                r_ul2.prepend(this);
-                            });
+                            //r_ul2.find('> li').each(function() {
+                            //    r_ul2.prepend(this);
+                            //});
 
                             r_ul2.superfish({
                                 speed: "fast",
@@ -340,6 +340,87 @@
                                     $(".kopa-sync-carousel-widget .loading").hide();
                                 }
                             });
+                        }
+                    }]);
+
+                };
+
+                if ($('.kopa-sync-carousel-2-widget').length > 0) {
+                    Modernizr.load([{
+                        load: kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
+                        complete: function() {
+                            var sync3 = $(".kopa-sync-carousel-2-widget .sync3");
+                            var sync4 = $(".kopa-sync-carousel-2-widget .sync4");
+
+                            sync3.owlCarousel({
+                                singleItem: true,
+                                slideSpeed: 1000,
+                                navigation: false,
+                                navigationText: false,
+                                pagination: false,
+                                afterAction: syncPosition,
+                                responsiveRefreshRate: 200,
+                                afterInit: function(){
+                                    $(".kopa-sync-carousel-2-widget .loading").hide();
+                                }
+                            });
+
+                            sync4.owlCarousel({
+                                items: 4,
+                                itemsTablet: [799,3],
+                                itemsTabletSmall: [639,2],
+                                pagination: false,
+                                navigation: true,
+                                navigationText: false,
+                                responsiveRefreshRate: 100,
+                                afterInit: function(el) {
+                                    el.find(".owl-item").eq(0).addClass("synced");
+                                }
+                            });
+
+                            function syncPosition(el) {
+                                var current = this.currentItem;
+                                $(".sync4").find(".owl-item").removeClass("synced").eq(current).addClass("synced")
+                                if ($(".sync4").data("owlCarousel") !== undefined) {
+                                    center(current)
+                                }
+                            }
+
+                            $(".sync4").on("click", ".owl-item", function(e) {
+                                e.preventDefault();
+                                var number = $(this).data("owlItem");
+                                sync3.trigger("owl.goTo", number);
+                            });
+
+                            function center(number){
+
+                                var sync4visible = sync4.data("owlCarousel").owl.visibleItems;
+                                var num = number;
+                                var found = false;
+                                for(var i in sync4visible){
+                                    if(num === sync4visible[i]){
+                                        var found = true;
+                                    }
+                                }
+
+                                if(found===false){
+                                    if (undefined != sync4visible){
+                                        if(num > sync4visible[sync4visible.length-1]){
+                                            sync4.trigger("owl.goTo", num - sync4visible.length+2)
+                                        }else{
+                                            if(num - 1 === -1){
+                                                num = 0;
+                                            }
+                                            sync4.trigger("owl.goTo", num);
+                                        }
+                                    }
+                                } else if(num === sync4visible[sync4visible.length-1]){
+                                    sync4.trigger("owl.goTo", sync4visible[1])
+                                } else if(num === sync4visible[0]){
+                                    sync4.trigger("owl.goTo", num-1)
+                                }
+
+                            }
                         }
                     }]);
 
@@ -864,7 +945,7 @@
                                 columnWidth: 1,
                                 itemSelector: '.ms-item2'
                             });
-                            jQuerymasonry6.masonry('bindResize')
+                            jQuerymasonry6.masonry('bindResize');
                         });
 
                         var jQuerymasonry7 = $('.kopa-related-post > ul');

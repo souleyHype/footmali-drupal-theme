@@ -14,10 +14,17 @@
 
 
 // To understand behaviors, see https://drupal.org/node/756722#behaviors
-    Drupal.behaviors.my_custom_behavior = {
+    Drupal.behaviors.footmali = {
         attach: function (context, settings) {
 
-            // Place your code here.
+            //Video page when new videos load grab the list item put them inside a ul tag
+            $.when( $.ajax( "/video" ) ).then(function() {
+
+                var items = $('.kopa-entry-list > li');
+                $('.kopa-entry-list').append('<ul class="row clearfix"></ul>');
+                $('.kopa-entry-list ul:empty').first().html(items);
+
+            });
         }
     };
 

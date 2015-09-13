@@ -109,7 +109,7 @@ global $user;
 
             <nav class="kopa-main-nav-2">
                 <ul class="main-menu-2 sf-menu">
-                    <li><a href="#"><span>Item 1</span></a></li>
+                    <li>&nbsp;</li>
                 </ul>
             </nav>
             <!--/end main-nav-2-->

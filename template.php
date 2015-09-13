@@ -167,6 +167,11 @@ function footmali_form_user_register_form_alter(&$form, &$form_state, $form_id){
     $form['field_last_name'][LANGUAGE_NONE][0]['value']['#attributes']['class'][] = 'form-control';
 }
 
+function footmali_preprocess_views_view(&$vars){
+    $view = $vars['view'];
+    $vars['results'] = $view->result;
+}
+
 
 /*****************************
  *

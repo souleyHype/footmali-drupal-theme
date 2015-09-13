@@ -45,7 +45,6 @@ if($thumbnail_uri){
 ?>
 
 <article class="entry-item video-post">
-    <a class="entry-categories" href="#">mlb<span class="ttg"></span></a>
     <div class="entry-thumb">
         <a href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load">
             <?php echo ! empty($image) ? $image : $default_image_markup; ?>
