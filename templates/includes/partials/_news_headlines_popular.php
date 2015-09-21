@@ -1,7 +1,11 @@
+<?php $headlines = footmali_headline_articles(); ?>
+
 <div class="widget kopa-tab-1-widget">
     <div class="kopa-tab style7">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#headlines" data-toggle="tab"><span>headlines</span></a></li>
+            <?php if(count($headlines) > 0): ?>
+                <li class="active"><a href="#headlines" data-toggle="tab"><span>headlines</span></a></li>
+            <?php endif; ?>
             <li><a href="#news" data-toggle="tab"><span>plus populare</span></a></li>
         </ul>
         <!-- nav-tabs -->

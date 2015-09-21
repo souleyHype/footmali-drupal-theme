@@ -1,77 +1,46 @@
+<?php
+global $theme_path;
+$videos = footmali_get_videos(5);
+?>
+<?php if(count($videos) > 0): ?>
 <div class="widget kopa-slide-2-widget">
-    <h3 class="widget-title style11">video<span class="ttg"></span></h3>
+    <h3 class="widget-title style11">videos<span class="ttg"></span></h3>
     <div class="owl-carousel owl-carousel-7">
-        <div class="item">
-            <article class="entry-item video-post">
-                <div class="entry-thumb">
-                    <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                    <a class="thumb-icon" href="#"></a>
-                </div>
-                <div class="entry-content">
-                    <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                    <footer>
-                        <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                    </footer>
-                </div>
-            </article>
-        </div>
-        <div class="item">
-            <article class="entry-item video-post">
-                <div class="entry-thumb">
-                    <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                    <a class="thumb-icon" href="#"></a>
-                </div>
-                <div class="entry-content">
-                    <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                    <footer>
-                        <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                    </footer>
-                </div>
-            </article>
-        </div>
-        <div class="item">
-            <article class="entry-item video-post">
-                <div class="entry-thumb">
-                    <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                    <a class="thumb-icon" href="#"></a>
-                </div>
-                <div class="entry-content">
-                    <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                    <footer>
-                        <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                    </footer>
-                </div>
-            </article>
-        </div>
-        <div class="item">
-            <article class="entry-item video-post">
-                <div class="entry-thumb">
-                    <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                    <a class="thumb-icon" href="#"></a>
-                </div>
-                <div class="entry-content">
-                    <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                    <footer>
-                        <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                    </footer>
-                </div>
-            </article>
-        </div>
-        <div class="item">
-            <article class="entry-item video-post">
-                <div class="entry-thumb">
-                    <a href="#"><img src="http://placehold.it/188x147" alt=""></a>
-                    <a class="thumb-icon" href="#"></a>
-                </div>
-                <div class="entry-content">
-                    <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event"><a itemprop="name" href="#">USMNT friendly rostter about Dollovan</a></h4>
-                    <footer>
-                        <p class="entry-author">by <a href="#">Michel bellar</a></p>
-                    </footer>
-                </div>
-            </article>
-        </div>
+        <?php foreach($videos as $video): ?>
+            <?php
+            $default_image_path = '/' . $theme_path . '/images/default_video_thumb.png';
+            $default_image_markup = '<img src="'.$default_image_path.'" width="188" height="147" alt="" data-thmr="thmr_38">';
+            $thumbnail_uri = $video->field_video[LANGUAGE_NONE][0]['thumbnail_path'];
+            $image = '';
+
+
+            if($thumbnail_uri){
+                $variable = array(
+                    'style_name' => 'video_grid_thumbnail',
+                    'path' => $thumbnail_uri,
+                    'width' => '',
+                    'height' => '',
+                );
+
+                $image = theme_image_style($variable);
+            }
+            ?>
+            <div class="item">
+                <article class="entry-item video-post">
+                    <div class="entry-thumb">
+                        <a href="/node/<?php echo $video->nid; ?>"><?php echo ! empty($image) ? $image : $default_image_markup; ?></a>
+                        <a class="thumb-icon" href="/node/<?php echo $video->nid; ?>"></a>
+                    </div>
+                    <div class="entry-content">
+                        <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event">
+                            <a itemprop="name" href="#"><?php echo $video->title; ?></a>
+                        </h4>
+                    </div>
+                </article>
+            </div>
+        <?php endforeach; ?>
     </div>
     <!-- owl-carousel-7 -->
 </div>
 <!-- widget -->
+<?php endif; ?>

@@ -77,27 +77,8 @@
 
 global $theme_path;
 
-$articles_query = new EntityFieldQuery();
-$articles_query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'article')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->range(0, 15)
-    ->propertyOrderBy('created', 'DESC');
-
-$articles = array();
-$featured_articles = array();
-$top_articles = array();
-$headlines = array();
-
-$articles_result = $articles_query->execute();
-if( !empty($articles_result) && is_array($articles_result) ){
-	$articles_ids = array_keys($articles_result['node']);
-	$articles = node_load_multiple($articles_ids);
-
-    $featured_articles = array_slice($articles, 0, 5, true);
-    $top_articles = array_slice($articles, 5, 3, true);
-    $headlines = array_slice($articles, 8, 7, true);
-}
+$featured_articles = footmali_featured_articles();
+$top_articles = footmali_top_articles();
 
 ?>
 
@@ -198,6 +179,8 @@ if( !empty($articles_result) && is_array($articles_result) ){
                         </div>
                         <!-- widget -->
                         <?php endif; ?>
+
+                        <?php include_once('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->
 

@@ -64,8 +64,115 @@
     text-align: center;
 }
 
+/**
+* main menu override
+*/
+.main-menu, .main-menu-2 {
+    position: relative;
+    border: none;
+    margin: 0;
+    margin-left: 50%;
+    width: 70%;
+}
+
+.main-menu > li, .main-menu-2 > li {
+    float: left;
+}
+
+/*
+* video page
+*/
+.view-display-id-video_page .view-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.view-display-id-video_page .view-header h4.entry-title {
+    text-align: left;
+}
+
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;
     }
+
+    .view-display-id-video_page .view-header {
+        margin-bottom: 10px;
+    }
+}
+
+/**
+* Maintenance page
+*/
+
+html {
+    font-family: 'Open Sans', sans-serif;
+    /*background: url('../images/bg-top.png') no-repeat center fixed;*/
+    background-size: cover;
+}
+
+body.maintenance-page{
+    background: url('../images/stade26mars.jpg') no-repeat center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+.maintenance-page #logo{
+    width: 230px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 45%;
+}
+
+.maintenance-page #logo img{
+    max-width: 100%;
+}
+
+.maintenance-page #content {
+    position: relative;
+    width: 370px;
+    margin: auto;
+    top: 55%;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.maintenance-page #alert{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 51px;
+    border: 1px solid;
+    background-color: #FFFFFF;
+}
+
+.maintenance-page #main-info {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 100;
+    color: #FFFFFF;
+}
+
+.maintenance-page .thumb-hover {
+    width: 530px;
+    right: 0;
+    margin: auto;
+    -webkit-transform: skew(-25deg);
+    -moz-transform: skew(-25deg);
+    -o-transform: skew(-25deg);
+    transform: skew(-25deg);
+    background: rgba(255, 255, 255, 0.1);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    filter: Alpha(Opacity=0);
+    transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
 }

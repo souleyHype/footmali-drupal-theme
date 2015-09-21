@@ -167,6 +167,11 @@ function footmali_form_user_register_form_alter(&$form, &$form_state, $form_id){
     $form['field_last_name'][LANGUAGE_NONE][0]['value']['#attributes']['class'][] = 'form-control';
 }
 
+function footmali_preprocess_views_view(&$vars){
+    $view = $vars['view'];
+    $vars['results'] = $view->result;
+}
+
 
 /*****************************
  *
@@ -192,8 +197,61 @@ function footmali_output_image($style, $imageEntity){
     return theme_image_style($variable);
 }
 
-function footmali_article_tags(){
+function footmali_featured_articles(){
+    $articles_query = new EntityFieldQuery();
+    $articles_query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'article')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->range(0, 5)
+        ->propertyOrderBy('created', 'DESC');
 
+    $articles = array();
+
+    $articles_result = $articles_query->execute();
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result['node']);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
+}
+
+function footmali_top_articles(){
+    $articles_query = new EntityFieldQuery();
+    $articles_query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'article')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->range(5, 3)
+        ->propertyOrderBy('created', 'DESC');
+
+    $articles = array();
+
+    $articles_result = $articles_query->execute();
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result['node']);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
+}
+
+function footmali_headline_articles(){
+    $articles_query = new EntityFieldQuery();
+    $articles_query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'article')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->range(8, 7)
+        ->propertyOrderBy('created', 'DESC');
+
+    $articles = array();
+
+    $articles_result = $articles_query->execute();
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result['node']);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
 }
 
 /**
@@ -296,6 +354,25 @@ function footmali_get_tag_articles($tid){
     $articles_result = $articles_query->execute();
     $articles_ids = count($articles_result) ? array_keys($articles_result['node']) : false;
     return $articles_ids ? node_load_multiple($articles_ids) : false;
+}
+
+function footmali_get_videos($limit=5){
+    $articles_query = new EntityFieldQuery();
+    $articles_query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'video')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->range(0, $limit)
+        ->propertyOrderBy('created', 'DESC');
+
+    $articles = array();
+
+    $articles_result = $articles_query->execute();
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result['node']);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
 }
 
 function footmali_get_team_squad($nid){

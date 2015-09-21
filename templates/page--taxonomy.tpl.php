@@ -161,7 +161,7 @@ if( $vocabulary == 'category' ){
                 </div>
                 <!-- main-col -->
 
-                <?php include_once('includes/sidebar.php'); ?>
+                <?php include_once('includes/taxonomy_sidebar.php'); ?>
 
             </div>
             <!-- row -->

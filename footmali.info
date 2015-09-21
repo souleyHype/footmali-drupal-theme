@@ -17,4 +17,4 @@ stylesheets[all][] = css/custom_styles.css
 
 scripts[] = js/bootstrap.min.js
 scripts[] = js/custom.js
-#scripts[] = js/script.js
+scripts[] = js/script.js
