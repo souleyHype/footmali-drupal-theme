@@ -177,7 +177,6 @@ function footmali_preprocess_views_view(&$vars){
  *
  * FOOTMALI CUSTOM FUNCTIONS
  *
- *
  *****************************/
 
 /**
@@ -492,4 +491,44 @@ function footmali_get_player_squad($nid){
     }
 
     return $squad;
+}
+
+function footmali_node_share($nid, $title){
+    global $language;
+    $lang = $language->language === 'en' ? 'en-US' : $language->language;
+
+    $url = url(drupal_get_path_alias("node/".$nid), array('absolute'=>true));
+    $twitter_url  = 'https://twitter.com/intent/tweet?';
+    $twitter_url .= 'text=' . urlencode($title);
+    $twitter_url .= '&url=' . urlencode($url);
+    $twitter_url .= '&hashtags=footballMalien,footMali,maliFootball';
+    $twitter_url .= '&via=FOOTMALICOM';
+    $google_url = "https://plus.google.com/share?url=" . urlencode($url) ."&hl=" . $lang;
+    $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;";
+
+    return array(
+        'facebook_url' => $url,
+        'twitter_url' => $twitter_url,
+        'google_url' => $google_url,
+        'google_onclick' => $google_onlick,
+    );
+}
+
+/*****************************
+ *
+ * FOOTMALI Helper FUNCTIONS
+ *
+ *****************************/
+function footmali_trim_paragraph($string, $your_desired_width) {
+    $parts = preg_split('/([\s\n\r]+)/', $string, null, PREG_SPLIT_DELIM_CAPTURE);
+    $parts_count = count($parts);
+
+    $length = 0;
+    $last_part = 0;
+    for (; $last_part < $parts_count; ++$last_part) {
+        $length += strlen($parts[$last_part]);
+        if ($length > $your_desired_width) { break; }
+    }
+
+    return implode(array_slice($parts, 0, $last_part));
 }

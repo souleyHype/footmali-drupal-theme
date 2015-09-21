@@ -4,7 +4,7 @@ $videos = footmali_get_videos(5);
 ?>
 <?php if(count($videos) > 0): ?>
 <div class="widget kopa-slide-2-widget">
-    <h3 class="widget-title style11">videos<span class="ttg"></span></h3>
+    <h3 class="widget-title style11"><?php echo t('Videos'); ?><span class="ttg"></span></h3>
     <div class="owl-carousel owl-carousel-7">
         <?php foreach($videos as $video): ?>
             <?php
@@ -28,12 +28,12 @@ $videos = footmali_get_videos(5);
             <div class="item">
                 <article class="entry-item video-post">
                     <div class="entry-thumb">
-                        <a href="/node/<?php echo $video->nid; ?>"><?php echo ! empty($image) ? $image : $default_image_markup; ?></a>
+                        <a href="<?php echo drupal_get_path_alias("/node/$video->nid") ?>"><?php echo ! empty($image) ? $image : $default_image_markup; ?></a>
                         <a class="thumb-icon" href="/node/<?php echo $video->nid; ?>"></a>
                     </div>
                     <div class="entry-content">
-                        <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event">
-                            <a itemprop="name" href="#"><?php echo $video->title; ?></a>
+                        <h4 class="entry-title" itemscope="" itemtype="http://schema.org/MediaObject">
+                            <a itemprop="name" href="<?php echo drupal_get_path_alias("/node/$video->nid") ?>"><?php echo $video->title; ?></a>
                         </h4>
                     </div>
                 </article>

@@ -73,14 +73,7 @@
  */
 ?>
 
-<?php
-
-global $theme_path;
-
-$featured_articles = footmali_featured_articles();
-$top_articles = footmali_top_articles();
-
-?>
+<?php global $theme_path; ?>
 
 <?php include_once('includes/header.php'); ?>
 
@@ -89,38 +82,7 @@ $top_articles = footmali_top_articles();
         <div class="wrapper mb-30">
 
             <div class="widget-area-1">
-                <div class="widget kopa-sync-carousel-widget">
-                    <div class="owl-carousel sync1">
-                    <?php if(count($featured_articles) > 0): ?>
-                        <?php foreach($featured_articles as $featured_article): ?>
-                            <div class="item">
-                                <article class="entry-item">
-                                    <div class="entry-thumb">
-                                        <a href="<?php echo drupal_get_path_alias("node/{$featured_article->nid}"); ?>">
-                                            <?php echo footmali_output_image('homepage_highlight_carousel', $featured_article->field_image); ?>
-                                        </a>
-                                        <div class="thumb-hover"></div>
-                                    </div>
-                                    <div class="entry-content">
-                                        <p><span><b><?php echo format_date($featured_article->created, 'medium', 'j F Y') ?></b></span></p>
-                                        <h4 class="entry-title">
-                                            <a href="<?php echo drupal_get_path_alias("node/{$featured_article->nid}"); ?>"><?php echo $featured_article->title; ?></a>
-                                        </h4>
-                                        <h5><span><b>Wanger confirms that Germany international ...</b></span></h5>
-                                    </div>
-                                </article>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                    </div>
-                    <!-- sync1 -->
-                    <div class="loading">
-                        <i class="fa fa-refresh fa-spin"></i>
-                    </div>
-
-                </div>
-                <!-- kopa sync carousel widget -->
-
+                <?php include_once('includes/partials/_homepage_featured_carrousel.php'); ?>
             </div>
             <!-- widget-area-1 -->
 
@@ -141,45 +103,7 @@ $top_articles = footmali_top_articles();
 
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 
-
-                        <?php if(count($top_articles) > 0): ?>
-                        <div class="widget kopa-article-list-widget article-list-1">
-                            <h3 class="widget-title style12"><?php echo t('Top Stories'); ?><span class="ttg"></span></h3>
-                            <ul class="clearfix">
-                                <?php foreach($top_articles as $top_article): ?>
-                                    <li>
-                                        <article class="entry-item">
-                                            <div class="entry-thumb">
-                                                <a href="<?php echo drupal_get_path_alias("node/{$top_article->nid}"); ?>">
-                                                    <?php echo footmali_output_image('article_teaser', $top_article->field_image); ?>
-                                                </a>
-                                            </div>
-                                            <div class="entry-content">
-                                                <div class="content-top">
-                                                    <h4 class="entry-title"><a href="<?php echo drupal_get_path_alias("node/{$top_article->nid}"); ?>"><?php echo $top_article->title; ?></a></h4>
-                                                </div>
-                                                <?php echo drupal_substr($top_article->body[LANGUAGE_NONE][0]['value'], 0, 140) . '...'; ?>
-                                                <footer>
-                                                    <!-- todo: link arthur's other articles -->
-                                                    <p class="entry-author">by <?php echo $top_article->name; ?></p>
-                                                </footer>
-                                            </div>
-                                            <div class="post-share-link style-bg-color">
-                                                <span><i class="fa fa-share-alt"></i></span>
-                                                <ul>
-                                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <!-- widget -->
-                        <?php endif; ?>
-
+                        <?php include_once('includes/partials/_top_stories.php'); ?>
                         <?php include_once('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->

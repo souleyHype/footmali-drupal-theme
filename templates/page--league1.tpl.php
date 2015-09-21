@@ -106,6 +106,8 @@ global $theme_path;
 
                 <?php print render($page['content']); ?>
 
+                <?php include_once('includes/partials/_video_carrousel.php'); ?>
+
             </div>
             <!-- main-col -->
 

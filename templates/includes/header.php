@@ -28,7 +28,7 @@ global $user;
                 <div class="social-links style-color">
                     <ul class="clearfix">
                         <li><a href="https://www.facebook.com/footmalicom" target="_blank" class="fa fa-facebook"></a></li>
-                        <li><a href="https://twitter.com/footmalicom" class="fa fa-twitter"></a></li>
+                        <li><a href="https://twitter.com/footmalicom" target="_blank" class="fa fa-twitter"></a></li>
                         <li><a href="https://plus.google.com/+Footmalicom" target="_blank" class="fa fa-google-plus"></a></li>
                     </ul>
                 </div>

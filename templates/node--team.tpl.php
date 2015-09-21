@@ -112,7 +112,7 @@ $articles = footmali_get_entity_articles($nid);
                         <li class="t-item col-md-6 col-sm-6 col-xs-6" style="position: absolute; left: 0px; top: 0px;">
                             <article class="entry-item">
                                 <div class="entry-thumb">
-                                    <a href="#">
+                                    <a href="/<?php echo drupal_get_path_alias('node/' . $player->nid); ?>">
                                         <?php
                                             echo theme_image_style(array(
                                                 'style_name' => 'squad_player',
