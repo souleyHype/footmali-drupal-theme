@@ -131,7 +131,7 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
 
             <h4 class="entry-title"><?php print $title; ?></h4>
             <div class="entry-meta">
-                <span class="entry-author">par <?php echo $node->name; ?></a></span>
+                <span class="entry-author"><?php echo t('by'); ?> <?php echo $node->name; ?></a></span>
                 <span class="entry-date"><?php echo $published_on; ?></span>
             </div>
             <div class="entry-thumb">
@@ -188,7 +188,7 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
                         </a>
                     </div>
                     <div class="entry-content">
-                        <a href="/<?php echo drupal_get_path_alias("node/".$nid); ?>" class="">PREVIOUS POST</a>
+                        <a href="/<?php echo drupal_get_path_alias("node/".$nid); ?>" class=""><?php echo t('Previous Post'); ?></a>
                         <h4 class="entry-title">
                             <a href="/<?php echo drupal_get_path_alias("node/{$prev_article->nid}"); ?>"><?php echo $prev_article->title; ?></a>
                         </h4>
@@ -203,7 +203,7 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
                         </a>
                     </div>
                     <div class="entry-content">
-                        <a href="/<?php echo drupal_get_path_alias("node/".$nid); ?>" class="">NEXT POST</a>
+                        <a href="/<?php echo drupal_get_path_alias("node/".$nid); ?>" class=""><?php echo t('Next Post'); ?></a>
                         <h4 class="entry-title">
                             <a href="/<?php echo drupal_get_path_alias("node/{$next_article->nid}"); ?>"><?php echo $next_article->title; ?></a>
                         </h4>
@@ -231,10 +231,10 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
             <div class="content-top">
                 <h4 class="entry-title"><a href="/<?php echo drupal_get_path_alias('node/' . $node->nid); ?>"><?php echo $title; ?></a></h4>
             </div>
-            <?php echo drupal_substr($body[0]['value'], 0, 140) . '...'; ?>
+            <?php echo footmali_trim_paragraph($body[0]['value'], 140) . '...'; ?>
             <footer>
                 <!-- todo: link arthur's other articles -->
-                <p class="entry-author">par <?php echo $name; ?></p>
+                <p class="entry-author"><?php echo t('by'); ?> <?php echo $name; ?></p>
             </footer>
         </div>
         <div class="post-share-link style-bg-color">

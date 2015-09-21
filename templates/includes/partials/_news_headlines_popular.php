@@ -4,9 +4,9 @@
     <div class="kopa-tab style7">
         <ul class="nav nav-tabs">
             <?php if(count($headlines) > 0): ?>
-                <li class="active"><a href="#headlines" data-toggle="tab"><span>headlines</span></a></li>
+                <li class="active"><a href="#headlines" data-toggle="tab"><span><?php echo t('Headlines'); ?></span></a></li>
             <?php endif; ?>
-            <li><a href="#news" data-toggle="tab"><span>plus populare</span></a></li>
+            <li><a href="#news" data-toggle="tab"><span><?php echo t('Most Popular'); ?></span></a></li>
         </ul>
         <!-- nav-tabs -->
         <div class="tab-content">

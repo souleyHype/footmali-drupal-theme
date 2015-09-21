@@ -119,7 +119,7 @@ if( $vocabulary == 'category' ){
                     <div class="widget-area-2">
 
                         <div class="widget kopa-article-list-widget article-list-1">
-                            <h3 class="widget-title style12">the Latest news<span class="ttg"></span></h3>
+                            <h3 class="widget-title style12"><?php echo t('the Latest news'); ?><span class="ttg"></span></h3>
                             <ul class="clearfix">
                                 <?php foreach($articles as $article): ?>
                                     <li>
@@ -135,9 +135,9 @@ if( $vocabulary == 'category' ){
                                                         <a itemprop="name" href="<?php echo url("node/{$article->nid}"); ?>"><?php echo $article->title; ?></a>
                                                     </h4>
                                                 </div>
-                                                <?php echo drupal_substr($article->body[LANGUAGE_NONE][0]['value'], 0, 140) . '...'; ?>
+                                                <?php echo footmali_trim_paragraph($article->body[LANGUAGE_NONE][0]['value'], 140) . '...'; ?>
                                                 <footer>
-                                                    <p class="entry-author">by <?php echo $article->name; ?></p>
+                                                    <p class="entry-author"><?php echo t('by'); ?> <?php echo $article->name; ?></p>
                                                 </footer>
                                             </div>
                                             <div class="post-share-link style-bg-color">
