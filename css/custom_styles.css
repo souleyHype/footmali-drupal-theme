@@ -82,6 +82,7 @@
 /*
 * video page
 */
+
 .view-display-id-video_page .view-header {
     margin-bottom: 20px;
     text-align: center;
@@ -89,6 +90,12 @@
 
 .view-display-id-video_page .view-header h4.entry-title {
     text-align: left;
+}
+
+.view-display-id-video_page .attachment .view-footer {
+    padding: 10px 15px 6px;
+    border-bottom: 5px solid #ddd;
+    margin-bottom: 15px;
 }
 
 @media (min-width: 768px) {

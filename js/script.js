@@ -18,12 +18,12 @@
         attach: function (context, settings) {
 
             //Video page when new videos load grab the list item put them inside a ul tag
-            $.when( $.ajax( "/video" ) ).then(function() {
-
-                var items = $('.kopa-entry-list > li');
-                $('.kopa-entry-list').append('<ul class="row clearfix"></ul>');
-                $('.kopa-entry-list ul:empty').first().html(items);
-
+            $( document ).ajaxComplete(function( event, xhr, settings ) {
+                if(settings.url.match(/video/)){
+                    var items = $('.kopa-entry-list > li');
+                    $('.kopa-entry-list').append('<ul class="row clearfix"></ul>');
+                    $('.kopa-entry-list ul:empty').first().html(items);
+                }
             });
         }
     };

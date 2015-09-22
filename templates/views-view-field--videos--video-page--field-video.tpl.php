@@ -47,15 +47,15 @@ $social_share = footmali_node_share($row->nid, $row->node_title);
 
 <article class="entry-item video-post">
     <div class="entry-thumb">
-        <a href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load">
+        <a href="/video/<?php echo $row->nid; ?>" class="video-thumb">
             <?php echo ! empty($image) ? $image : $default_image_markup; ?>
         </a>
-        <a href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load thumb-icon style1"></a>
+        <a href="/video/<?php echo $row->nid; ?>" class="thumb-icon style1"></a>
     </div>
     <div class="entry-content">
         <div class="content-top">
             <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Event">
-                <a itemprop="name" href="/node/<?php echo $row->nid; ?>" class="jquery_ajax_load">
+                <a itemprop="name" href="/video/<?php echo $row->nid; ?>" class="video-title">
                     <?php echo $row->node_title;?>
                 </a>
             </h4>
