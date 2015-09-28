@@ -506,12 +506,43 @@ function footmali_node_share($nid, $title){
     $google_url = "https://plus.google.com/share?url=" . urlencode($url) ."&hl=" . $lang;
     $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;";
 
-    return array(
+    return (object) array(
+        'lang' => $lang,
+        'url' => $url,
         'facebook_url' => $url,
         'twitter_url' => $twitter_url,
         'google_url' => $google_url,
         'google_onclick' => $google_onlick,
     );
+}
+
+function footmali_render_share_normal($nid, $title){
+    $share = footmali_node_share($nid, $title);
+
+    $output   = '<div class="kopa-share-post social-links style-bg-color">';
+    $output  .= '    <ul class="clearfix">';
+    $output  .= '        <li><a href="javascript:void" data-url="'. $share->url .'" class="fa fa-facebook facebook-share"></a></li>';
+    $output  .= '        <li><a href="'. $share->twitter_url .'" class="fa fa-twitter"></a></li>';
+    $output  .= '        <li><a href="'. $share->google_url .'" class="fa fa-google-plus" onclick="'. $share->google_onclick .'" alt="Share on Google+"></a></li>';
+    $output  .= '    </ul>';
+    $output  .= '</div>';
+
+    return $output;
+}
+
+function footmali_render_share_small($nid, $title){
+    $share = footmali_node_share($nid, $title);
+
+    $output  = '<div class="post-share-link closed style-bg-color">';
+    $output .= '<span><i class="fa fa-share-alt"></i></span>';
+    $output .= '<ul>';
+    $output .= '<li><a href="javascript:void" data-url="'. $share->url .'" class="fa fa-facebook facebook-share"></a></li>';
+    $output .= '<li><a href="'. $share->twitter_url .'" class="fa fa-twitter"></a></li>';
+    $output .= '<li><a href="'. $share->google_url .'" class="fa fa-google-plus" onclick="'. $share->google_onclick .'" alt="Share on Google+"></a></li>';
+    $output .= '</ul>';
+    $output .= '</div>';
+
+    return $output;
 }
 
 /*****************************

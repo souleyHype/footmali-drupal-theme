@@ -42,18 +42,18 @@ global $user;
                 <div class="header-top-list">
                     <ul class="clearfix">
                         <!-- <li><a href="#"><span><i class="fa fa-image"></i><span>photos</span></span></a></li> -->
-                        <li><a href="/video"><span><i class="fa fa-play-circle-o"></i><span>video</span></span></a></li>
+                        <li><a href="/video/index"><span><i class="fa fa-play-circle-o"></i><span><?php echo t('Video'); ?></span></span></a></li>
                     </ul>
                 </div>
                 <!-- header-top-list -->
 
                 <div class="kopa-search-box">
-                    <a href="#"><i class="fa fa-search"></i><span>Search</span></a>
+                    <a href="#"><i class="fa fa-search"></i><span><?php echo t('Search'); ?></span></a>
 
                     <form action="/" class="search-form clearfix" method="get">
                         <input type="text" onBlur="if (this.value == '')
                                 this.value = this.defaultValue;" onFocus="if (this.value == this.defaultValue)
-                                this.value = '';" value="Search..." name="s" class="search-text">
+                                this.value = '';" value="<?php echo t('Search'); ?>..." name="s" class="search-text">
                         <button type="submit" class="search-submit">
                             <span>Go</span>
                         </button>
@@ -114,12 +114,11 @@ global $user;
             </nav>
             <!--/end main-nav-2-->
 
-            <nav class="main-nav-mobile style2 clearfix">
-                <a class="pull">categories<i class="fa fa-angle-down"></i></a>
-                <ul class="main-menu-mobile">
-                    <!-- MENU LINKS -->
-                </ul>
-            </nav>
+<!--            <nav class="main-nav-mobile style2 clearfix">-->
+<!--                <a class="pull">categories<i class="fa fa-angle-down"></i></a>-->
+<!--                <ul class="main-menu-mobile">-->
+<!--                </ul>-->
+<!--            </nav>-->
             <!--/main-menu-mobile-2-->
 
         </div>

@@ -15,7 +15,7 @@
                     <?php if(count($headlines) > 0): ?>
                         <?php foreach($headlines as $headline): ?>
                             <li>
-                                <a href="<?php echo drupal_get_path_alias("node/{$headline->nid}"); ?>"><?php echo $headline->title; ?></a>
+                                <a href="/<?php echo drupal_get_path_alias("node/{$headline->nid}"); ?>"><?php echo $headline->title; ?></a>
                             </li>
                         <?php endforeach; ?>
                     <?php endif; ?>

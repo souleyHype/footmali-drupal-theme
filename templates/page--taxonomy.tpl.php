@@ -119,7 +119,7 @@ if( $vocabulary == 'category' ){
                     <div class="widget-area-2">
 
                         <div class="widget kopa-article-list-widget article-list-1">
-                            <h3 class="widget-title style12"><?php echo t('the Latest news'); ?><span class="ttg"></span></h3>
+                            <h3 class="widget-title style12"><?php echo t($term->name); ?><span class="ttg"></span></h3>
                             <ul class="clearfix">
                                 <?php foreach($articles as $article): ?>
                                     <li>
@@ -140,14 +140,7 @@ if( $vocabulary == 'category' ){
                                                     <p class="entry-author"><?php echo t('by'); ?> <?php echo $article->name; ?></p>
                                                 </footer>
                                             </div>
-                                            <div class="post-share-link style-bg-color">
-                                                <span><i class="fa fa-share-alt"></i></span>
-                                                <ul>
-                                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                                </ul>
-                                            </div>
+                                            <?php echo footmali_render_share_small($article->nid, $article->title); ?>
                                         </article>
                                     </li>
                                 <?php endforeach; ?>

@@ -23,7 +23,7 @@
 
     <div class="wrapper clearfix">
 
-        <p id="copyright" class="">Copyright © Footmali.com <?php echo date('Y'); ?>. All Rights Reserved.</p>
+        <p id="copyright" class=""><?php echo t('Copyright'); ?> © Footmali.com <?php echo date('Y'); ?>. <?php echo t('All Rights Reserved'); ?>.</p>
 
     </div>
     <!-- wrapper -->

@@ -28,7 +28,7 @@
 
 
 // To understand behaviors, see https://drupal.org/node/756722#behaviors
-    Drupal.behaviors.my_custom_behavior = {
+    Drupal.behaviors.kopaTheme = {
         attach: function(context, settings) {
 
             $(document).ready(function(){
@@ -488,21 +488,41 @@
                  9. Single-share-filter
                  =============================================== */
 
-                $('.post-share-link > span').click(function (e) {
+               $(document).on('click', '.post-share-link.closed > span', function (e) {
                     e.preventDefault();
                     var list_s = $(this).closest(".post-share-link").find("ul");
+
                     if (list_s.is(":hidden")) {
+                        list_s.parent('.post-share-link').addClass('opened');
+                        list_s.parent('.post-share-link').removeClass('closed');
                         list_s.slideDown("slow");
-                    } else {
+                    }
+
+                });
+
+                $(document).on('click', '.post-share-link.opened > span', function (e) {
+                    e.preventDefault();
+                    var list_s = $(this).closest(".post-share-link").find("ul");
+
+                    if(!list_s.is(":hidden") ) {
+                        list_s.parent('.post-share-link').addClass('closed');
+                        list_s.parent('.post-share-link').removeClass('opened');
                         list_s.slideUp();
                     }
+
                 });
 
                 $(document).click(function(event) {
-                    if(!$(event.target).closest('.post-share-link').length) {
-                        if($('.post-share-link ul').is(":visible")) {
-                            $('.post-share-link ul').slideUp();
-                        }
+                    if(!$(event.target).closest('.post-share-link.opened').length) {
+                        var opened = $('.post-share-link.opened ul');
+
+                        opened.each(function () {
+                            if($(this).is(":visible")) {
+                                $(this).parent('.post-share-link').addClass('closed');
+                                $(this).parent('.post-share-link').removeClass('opened');
+                                $(this).slideUp();
+                            }
+                        })
                     }
                 });
 
@@ -810,78 +830,6 @@
                     ]);
                 };
 
-
-                /* =========================================================
-                 15. Google Map
-                 ============================================================ */
-
-                var map;
-
-                if ($('.kopa-map').length > 0) {
-                    Modernizr.load([{
-                        load: [ kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
-                        complete: function () {
-                            var id_map = $('.kopa-map').attr('id');
-                            var lat = parseFloat($('.kopa-map').attr('data-latitude'));
-                            var lng = parseFloat($('.kopa-map').attr('data-longitude'));
-                            var place = $('.kopa-map').attr('data-place');
-
-                            map = new GMaps({
-                                el: '#'+id_map,
-                                lat: lat,
-                                lng: lng,
-                                zoomControl : true,
-                                zoomControlOpt: {
-                                    style : 'SMALL',
-                                    position: 'TOP_LEFT'
-                                },
-                                panControl : false,
-                                streetViewControl : false,
-                                mapTypeControl: false,
-                                overviewMapControl: false
-                            });
-                            map.addMarker({
-                                lat: lat,
-                                lng: lng,
-                                title: place
-                            });
-                        }
-                    }]);
-                };
-
-                var map1;
-                if ($('.kopa-map-1').length > 0) {
-                    Modernizr.load([{
-                        load: [ kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
-                        complete: function () {
-                            var id_map = $('.kopa-map-1').attr('id');
-                            var lat = parseFloat($('.kopa-map-1').attr('data-latitude'));
-                            var lng = parseFloat($('.kopa-map-1').attr('data-longitude'));
-                            var place = $('.kopa-map-1').attr('data-place');
-
-                            map1 = new GMaps({
-                                el: '#'+id_map,
-                                lat: lat,
-                                lng: lng,
-                                zoomControl : true,
-                                zoomControlOpt: {
-                                    style : 'SMALL',
-                                    position: 'TOP_LEFT'
-                                },
-                                panControl : false,
-                                streetViewControl : false,
-                                mapTypeControl: false,
-                                overviewMapControl: false
-                            });
-                            map1.addMarker({
-                                lat: lat,
-                                lng: lng,
-                                title: place
-                            });
-                        }
-                    }]);
-                };
-
                 /* =========================================================
                  16. Masonry
                  ============================================================ */
@@ -1033,8 +981,7 @@
                     }
                 }]);
 
-                $('.kopa-share-post .fa-facebook').click(function () {
-                    console.log('facebook share');
+                $('.facebook-share').click(function () {
                     var button = $(this);
                     if(button.attr('data-url') && button.attr('data-url').length > 0){
                         FB.ui({
