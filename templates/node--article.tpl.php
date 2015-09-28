@@ -83,8 +83,9 @@
 <?php
 global $language;
 
+
+$tags = array();
 if($page){
-    $tags = array();
 
     if( count($field_tags) >= 1){
         foreach($field_tags as $tag){
@@ -105,25 +106,14 @@ if($page){
 }
 
 $published_on  = 'Le ' . date('d/m/Y à H:i:s', $node->created);
-$published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y à H:i:s', $node->changed) : '';
-
-$lang = $language->language === 'en' ? 'en-US' : $language->language;
-
-$url = url(drupal_get_path_alias("node/".$nid), array('absolute'=>true));
-$twitter_url  = 'https://twitter.com/intent/tweet?';
-$twitter_url .= 'text=' . urlencode($title);
-$twitter_url .= '&url=' . urlencode($url);
-$twitter_url .= '&hashtags=footballMalien,footMali,maliFootball';
-$twitter_url .= '&via=FOOTMALICOM';
-
-$google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;";
+//$published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y à H:i:s', $node->changed) : '';
 
 ?>
 <?php if($page): ?>
     <div class="kopa-entry-post">
         <article class="entry-item">
             <p class="entry-categories style-s">
-                <a href="#">news</a>
+                <a href="/actu"><?php echo t('News'); ?></a>
                 <?php if(!empty($new_category_url) && !empty($news_category)): ?>
                     <a href="<?php echo $new_category_url; ?>"><?php echo $news_category; ?></a>
                 <?php endif; ?>
@@ -139,13 +129,7 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
             </div>
             <p class="short-des"><i></i></p>
 
-            <div class="kopa-share-post social-links style-bg-color">
-                <ul class="clearfix">
-                    <li><a href="javascript:void" data-url="<?php echo $url; ?>" class="fa fa-facebook"></a></li>
-                    <li><a href="<?php echo $twitter_url; ?>" class="fa fa-twitter"></a></li>
-                    <li><a href="https://plus.google.com/share?url=<?php echo urlencode($url); ?>&hl=<?php echo $lang; ?>" class="fa fa-google-plus" onclick="<?php echo $google_onlick; ?>" alt="Share on Google+"></a></li>
-                </ul>
-            </div>
+            <?php echo footmali_render_share_normal($nid, $title); ?>
             <!-- kopa-share-post -->
             <?php print render($content['body']); ?>
         </article>
@@ -165,13 +149,7 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
         <!-- kopa-tag-box -->
     <?php endif; ?>
 
-    <div class="kopa-share-post social-links style-bg-color">
-        <ul class="clearfix">
-            <li><a href="javascript:void" data-url="<?php echo $url; ?>" class="fa fa-facebook"></a></li>
-            <li><a href="<?php echo $twitter_url; ?>" class="fa fa-twitter"></a></li>
-            <li><a href="https://plus.google.com/share?url=<?php echo urlencode($url); ?>&hl=<?php echo $lang; ?>" class="fa fa-google-plus" onclick="<?php echo $google_onlick; ?>" alt="Share on Google+"></a></li>
-        </ul>
-    </div>
+    <?php echo footmali_render_share_normal($nid, $title); ?>
     <!-- kopa-share-post -->
 
     <?php
@@ -237,13 +215,6 @@ $google_onlick = "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,re
                 <p class="entry-author"><?php echo t('by'); ?> <?php echo $name; ?></p>
             </footer>
         </div>
-        <div class="post-share-link style-bg-color">
-            <span><i class="fa fa-share-alt"></i></span>
-            <ul class="clearfix">
-                <li><a href="javascript:void" data-url="<?php echo $url; ?>" class="fa fa-facebook"></a></li>
-                <li><a href="<?php echo $twitter_url; ?>" class="fa fa-twitter"></a></li>
-                <li><a href="https://plus.google.com/share?url=<?php echo urlencode($url); ?>&hl=<?php echo $lang; ?>" class="fa fa-google-plus" onclick="<?php echo $google_onlick; ?>" alt="Share on Google+"></a></li>
-            </ul>
-        </div>
+        <?php echo footmali_render_share_small($nid, $title); ?>
     </article>
 <?php endif; ?>

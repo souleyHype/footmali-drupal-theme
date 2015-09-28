@@ -20,17 +20,10 @@ $top_articles = footmali_top_articles();
                             <?php echo footmali_trim_paragraph($top_article->body[LANGUAGE_NONE][0]['value'],  140); ?>
                             <footer>
                                 <!-- todo: link arthur's other articles -->
-                                <p class="entry-author">by <?php echo $top_article->name; ?></p>
+                                <p class="entry-author"><?php echo t('by'); ?> <?php echo $top_article->name; ?></p>
                             </footer>
                         </div>
-                        <div class="post-share-link style-bg-color">
-                            <span><i class="fa fa-share-alt"></i></span>
-                            <ul>
-                                <li><a href="#" class="fa fa-facebook"></a></li>
-                                <li><a href="#" class="fa fa-twitter"></a></li>
-                                <li><a href="#" class="fa fa-google-plus"></a></li>
-                            </ul>
-                        </div>
+                        <?php echo footmali_render_share_small($top_article->nid, $top_article->title); ?>
                     </article>
                 </li>
             <?php endforeach; ?>

@@ -155,22 +155,15 @@ $articles = footmali_get_entity_articles($nid);
                             <div class="entry-content">
                                 <div class="content-top">
                                     <h4 class="entry-title" itemscope="" itemtype="http://schema.org/Article">
-                                        <a itemprop="name" href="<?php echo url("node/{$article->nid}"); ?>"><?php echo $article->title; ?></a>
+                                        <a itemprop="name" href="/<?php echo drupal_get_path_alias("node/{$article->nid}"); ?>"><?php echo $article->title; ?></a>
                                     </h4>
                                 </div>
-                                <?php echo drupal_substr($article->body[LANGUAGE_NONE][0]['value'], 0, 140) . '...'; ?>
+                                <?php echo footmali_trim_paragraph($article->body[LANGUAGE_NONE][0]['value'], 140) . '...'; ?>
                                 <footer>
-                                    <p class="entry-author">by <?php echo $article->name; ?></p>
+                                    <p class="entry-author"><?php echo t('by'); ?> <?php echo $article->name; ?></p>
                                 </footer>
                             </div>
-                            <div class="post-share-link style-bg-color">
-                                <span><i class="fa fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                </ul>
-                            </div>
+                            <?php echo footmali_render_share_small($article->nid, $article->title); ?>
                         </article>
                     </li>
                 <?php endforeach; ?>

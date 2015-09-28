@@ -40,7 +40,6 @@ if($thumbnail_uri){
     $image = theme_image_style($variable);
 }
 
-$social_share = footmali_node_share($row->nid, $row->node_title);
 
 
 ?>
@@ -64,12 +63,5 @@ $social_share = footmali_node_share($row->nid, $row->node_title);
 <!--            <p class="entry-author">by <a href="#">Michel bellar</a></p>-->
 <!--        </footer>-->
     </div>
-    <div class="post-share-link style-bg-color">
-        <span><i class="fa fa-share-alt"></i></span>
-        <ul>
-            <li><a href="javascript:void" data-url="<?php echo $social_share['facebook_url']; ?>" class="fa fa-facebook"></a></li>
-            <li><a href="<?php echo $social_share['twitter_url']; ?>" class="fa fa-twitter"></a></li>
-            <li><a href="<?php echo $social_share['google_url']; ?>" class="fa fa-google-plus" onclick="<?php echo $social_share['google_onclick']; ?>" alt="Share on Google+"></a></li>
-        </ul>
-    </div>
+    <?php echo footmali_render_share_small($row->nid, $row->node_title); ?>
 </article>
