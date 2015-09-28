@@ -985,8 +985,11 @@
                     var button = $(this);
                     if(button.attr('data-url') && button.attr('data-url').length > 0){
                         FB.ui({
-                            method: 'share',
-                            href: button.attr('data-url'),
+                            method: 'share_open_graph',
+                            action_type: 'og.likes',
+						  	action_properties: JSON.stringify({
+						    	object: button.attr('data-url')
+						  	})
                         }, function(response){
                             console.log(response);
                         });
