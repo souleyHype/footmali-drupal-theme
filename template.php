@@ -1,9 +1,14 @@
 <?php
 
+require_once 'lib/Mobile-Detect/Mobile_Detect.php';
+
 /**
  *Override or insert variables into the html template.
  */
 function footmali_preprocess_html(&$variables) {
+    if(footmali_ismobile()){
+        array_push($variables['classes_array'], 'mobile-view');
+    }
 
     // Add conditional CSS for IE < 9.
     drupal_add_css(
@@ -240,6 +245,25 @@ function footmali_headline_articles(){
         ->entityCondition('bundle', 'article')
         ->propertyCondition('status', NODE_PUBLISHED)
         ->range(8, 7)
+        ->propertyOrderBy('created', 'DESC');
+
+    $articles = array();
+
+    $articles_result = $articles_query->execute();
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result['node']);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
+}
+
+function footmali_mobile_articles(){
+    $articles_query = new EntityFieldQuery();
+    $articles_query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'article')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->range(0, 8)
         ->propertyOrderBy('created', 'DESC');
 
     $articles = array();
@@ -563,3 +587,9 @@ function footmali_trim_paragraph($string, $your_desired_width) {
 
     return implode(array_slice($parts, 0, $last_part));
 }
+
+function footmali_ismobile(){
+    $detect = new Mobile_Detect;
+    return ($detect->isMobile() && !$detect->isTablet());
+}
+
