@@ -79,6 +79,7 @@
 
     <div id="main-content" class="style1">
 
+    <?php if(!footmali_ismobile()): ?>
         <div class="wrapper mb-30">
 
             <div class="widget-area-1">
@@ -88,28 +89,33 @@
 
         </div>
         <!-- wrapper featured-->
+    <?php endif; ?>
 
         <div class="wrapper">
             <div class="spacer" style="margin-bottom: 10px;">&nbsp;</div>
-            <?php print $messages; ?>
-            <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-            <?php print render($page['help']); ?>
-            <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-
+            <?php if(!footmali_ismobile()): ?>
+                <?php print $messages; ?>
+                <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+                <?php print render($page['help']); ?>
+                <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+            <?php endif; ?>
             <div class="content-wrap">
                 <div class="row">
 
                     <div class="kopa-main-col">
 
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-
+                    <?php if(footmali_ismobile()): ?>
+                        <?php include_once('includes/partials/_mobile_top_stories.php'); ?>
+                    <?php else: ?>
                         <?php include_once('includes/partials/_top_stories.php'); ?>
+                    <?php endif; ?>
                         <?php include_once('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->
-
-                    <?php include_once('includes/sidebar.php'); ?>
-
+                    <?php if(!footmali_ismobile()): ?>
+                        <?php include_once('includes/sidebar.php'); ?>
+                    <?php endif; ?>
                 </div>
                 <!-- row -->
             </div>

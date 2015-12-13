@@ -154,7 +154,9 @@ if( $vocabulary == 'category' ){
                 </div>
                 <!-- main-col -->
 
-                <?php include_once('includes/taxonomy_sidebar.php'); ?>
+                <?php if(!footmali_ismobile()): ?>
+                    <?php include_once('includes/sidebar.php'); ?>
+                <?php endif; ?>
 
             </div>
             <!-- row -->

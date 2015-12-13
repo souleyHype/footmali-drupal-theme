@@ -183,3 +183,8 @@ body.maintenance-page{
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
 }
+
+/* hotfix */
+.none_admin_user .messages {
+    display: none;
+}

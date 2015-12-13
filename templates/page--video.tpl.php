@@ -109,7 +109,9 @@ global $theme_path;
             </div>
             <!-- main-col -->
 
-            <?php include_once('includes/sidebar.php'); ?>
+            <?php if(!footmali_ismobile()): ?>
+                <?php include_once('includes/sidebar.php'); ?>
+            <?php endif; ?>
 
         </div>
         <!-- row -->

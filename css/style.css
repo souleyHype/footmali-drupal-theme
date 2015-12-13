@@ -5368,6 +5368,11 @@ address {
     border: 1px solid #e5e5e5;
 }
 
+.mobile-view .kopa-article-list-widget {
+    border: none;
+    width: 100%;
+}
+
 .widget-title.style1, .widget-title.style2, .widget-title.style11, .widget-title.style12, .element-title, .article-list-9 .entry-item .entry-categories, .kopa-entry-list .entry-item .entry-categories {
     margin-bottom: 0;
     position: absolute;
@@ -7933,6 +7938,10 @@ ul.style1 > li:first-child {
     padding: 0 30px;
 }
 
+.mobile-view .content-wrap {
+    padding: 0;
+}
+
 .kopa-main-col {
     width: 70.17544%;
     padding: 0 15px;
@@ -8073,6 +8082,11 @@ ul.style1 > li:first-child {
 #main-content.style1 {
     padding: 10px 0 0 0;
     background: url("../images/bg-top.png") no-repeat #efefef;
+}
+
+.mobile-view #main-content.style1{
+    background: none;
+    padding: 0;
 }
 
 .kopa-home-3-page #main-content {
