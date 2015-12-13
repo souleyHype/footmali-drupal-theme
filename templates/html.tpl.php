@@ -69,7 +69,7 @@ global $theme_path;
         };
     </script>
 </head>
-<body class="<?php echo $is_front ? 'kopa-home-page' : 'kopa-sub-page kopa-single-page';?> <?php print $classes; ?>" <?php print $attributes; ?>>
+<body class="<?php echo $is_admin? 'admin_user': 'none_admin_user'; ?> <?php echo $is_front ? 'kopa-home-page' : 'kopa-sub-page kopa-single-page';?> <?php print $classes; ?>" <?php print $attributes; ?>>
 
     <?php print $page_top; ?>
     <?php print $page; ?>
