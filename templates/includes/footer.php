@@ -112,6 +112,11 @@
                         <div class="form-group">
                             <?php echo drupal_render($register_form['account']['pass']); ?>
                         </div>
+
+                        <!-- reCaptcha -->
+                        <div class="g-recaptcha" data-type="image" data-theme="light" data-sitekey="6LebARMTAAAAAMLo0hs0XrwCxlarDuL-iosAL2UO"></div>
+                        <script src='https://www.google.com/recaptcha/api.js'></script>
+                        
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><?php echo $register_form['actions']['submit']['#value']; ?></button>
                         </div>
@@ -126,7 +131,7 @@
                 <div class="row omb_row-sm-offset-3 omb_loginOr">
                     <div class="col-xs-12 col-sm-6">
                         <hr class="omb_hrOr">
-                        <span class="omb_spanOr">or</span>
+                        <span class="omb_spanOr"><?php echo t('or'); ?></span>
                     </div>
                 </div>
                 <?php if(function_exists('fboauth_action_display')): ?>
