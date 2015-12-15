@@ -443,7 +443,7 @@
                     }
                 });
 
-                $('.search-form').submit(function (event) {
+                $('.search-form.custom').submit(function (event) {
                     event.preventDefault();
                     var query = $('.search-text', this).val();
 
