@@ -50,7 +50,7 @@ global $user;
                 <div class="kopa-search-box">
                     <a href="#"><i class="fa fa-search"></i><span><?php echo t('Search'); ?></span></a>
 
-                    <form action="/" class="search-form clearfix" method="get">
+                    <form action="/" class="search-form custom clearfix" method="get">
                         <input type="text" onBlur="if (this.value == '')
                                 this.value = this.defaultValue;" onFocus="if (this.value == this.defaultValue)
                                 this.value = '';" value="<?php echo t('Search'); ?>..." name="s" class="search-text">
