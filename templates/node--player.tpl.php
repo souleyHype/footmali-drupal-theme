@@ -94,10 +94,10 @@ $player_squad = footmali_get_player_squad($nid);
 ?>
 <h1><?php echo $title; ?></h1>
 <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-6">
+    <div id="player-image" class="col-md-6 col-sm-6 col-xs-12">
         <?php echo footmali_output_image('player', $node->field_image); ?>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-6">
+    <div id="player-profile" class="col-md-6 col-sm-6 col-xs-12">
         <div class="player-profile" style="width: 100%">
             <h3><?php echo t('Profil'); ?></h3>
             <ul class="clearfix">
