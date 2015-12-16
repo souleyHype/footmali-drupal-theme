@@ -1,3 +1,4 @@
+<?php if(!footmali_ismobile()): ?>
 <div id="bottom-sidebar">
 <!--    <div class="bottom-area-2">-->
 <!---->
@@ -17,6 +18,7 @@
     <!-- bottom-area-3 -->
 </div>
 <!-- bottom-sidebar -->
+<?php endif; ?>
 
 <footer id="kopa-footer">
 
@@ -114,8 +116,7 @@
 
                         <!-- reCaptcha -->
                         <div class="g-recaptcha" data-type="image" data-theme="light" data-sitekey="6LebARMTAAAAAMLo0hs0XrwCxlarDuL-iosAL2UO"></div>
-                        <script src='https://www.google.com/recaptcha/api.js'></script>
-                        
+                        <br />
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><?php echo $register_form['actions']['submit']['#value']; ?></button>
                         </div>

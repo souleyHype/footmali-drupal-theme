@@ -141,9 +141,10 @@ function footmali_fboauth_action__connect($variables) {
 }
 
 function footmali_form_user_login_block_alter(&$form, &$form_state, $form_id){
-    $form['name']['#attributes']['placeholder'] = t( 'Username' );
+    $form['name']['#attributes']['placeholder'] = t('Username or e-mail address');
     $form['pass']['#attributes']['placeholder'] = t( 'Password' );
 
+    $form['name']['#title'] = t('Username or e-mail address');
     $form['name']['#attributes']['class'][] = 'form-control';
     $form['pass']['#attributes']['class'][] = 'form-control';
 }
@@ -166,6 +167,8 @@ function footmali_form_user_register_form_alter(&$form, &$form_state, $form_id){
 
     //Custom fields
     //[LANGUAGE_NONE][0]['value']
+    $form['field_first_name'][LANGUAGE_NONE][0]['value']['#title'] = t( 'First Name' );
+    $form['field_last_name'][LANGUAGE_NONE][0]['value']['#title'] = t( 'Last Name' );
     $form['field_first_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t( 'First Name' );
     $form['field_last_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t( 'Last Name' );
     $form['field_first_name'][LANGUAGE_NONE][0]['value']['#attributes']['class'][] = 'form-control';

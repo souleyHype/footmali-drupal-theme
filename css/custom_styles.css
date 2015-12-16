@@ -109,6 +109,14 @@
 }
 
 /**
+* Player profile page
+*/
+.node-type-player.mobile-view .kopa-main-col #player-image.col-xs-12 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+/**
 * Maintenance page
 */
 
