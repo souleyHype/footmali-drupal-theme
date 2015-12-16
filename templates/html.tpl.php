@@ -62,22 +62,21 @@ global $theme_path;
             }
         </style>
     </noscript>
-    <script src="/<?php echo $theme_path; ?>/js/modernizr.custom.js"></script>
-    <script>
-        var footmali = {
-            template_directory: "/<?php echo $theme_path; ?>/"
-        };
-    </script>
 </head>
 <body class="<?php echo $is_admin? 'admin_user': 'none_admin_user'; ?> <?php echo $is_front ? 'kopa-home-page' : 'kopa-sub-page kopa-single-page';?> <?php print $classes; ?>" <?php print $attributes; ?>>
-
+    <div id="fb-root"></div>
     <?php print $page_top; ?>
     <?php print $page; ?>
     <?php print $page_bottom; ?>
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
-
-    <div id="fb-root"></div>
+    <script>
+        var footmali = {
+            template_directory: "/<?php echo $theme_path; ?>/"
+        };
+    </script>
+    <script src="/<?php echo $theme_path; ?>/js/modernizr.custom.js"></script>
+    
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -88,8 +87,11 @@ global $theme_path;
     <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <!-- Mailchimp subscribe popup -->
-    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"84641bbbd87416b83377d69d6","lid":"a355837c60"}) })</script>
+    <?php if($is_front) : ?>
+        <!-- Mailchimp subscribe popup -->
+        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+        <script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"84641bbbd87416b83377d69d6","lid":"a355837c60"}) })</script>
+    <?php endif; ?>
 
     <?php print $scripts; ?>
 </body>
