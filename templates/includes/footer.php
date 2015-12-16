@@ -115,7 +115,7 @@
                         </div>
 
                         <!-- reCaptcha -->
-                        <div class="g-recaptcha" data-type="image" data-theme="light" data-sitekey="6LebARMTAAAAAMLo0hs0XrwCxlarDuL-iosAL2UO"></div>
+                        <div class="g-recaptcha"></div>
                         <br />
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><?php echo $register_form['actions']['submit']['#value']; ?></button>
