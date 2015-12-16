@@ -87,7 +87,7 @@ global $theme_path;
     <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <?php if($is_front) : ?>
+    <?php if($is_front && !footmali_ismobile()) : ?>
         <!-- Mailchimp subscribe popup -->
         <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
         <script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"84641bbbd87416b83377d69d6","lid":"a355837c60"}) })</script>

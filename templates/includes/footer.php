@@ -1,3 +1,4 @@
+<?php if(!footmali_ismobile()): ?>
 <div id="bottom-sidebar">
 <!--    <div class="bottom-area-2">-->
 <!---->
@@ -17,6 +18,7 @@
     <!-- bottom-area-3 -->
 </div>
 <!-- bottom-sidebar -->
+<?php endif; ?>
 
 <footer id="kopa-footer">
 
