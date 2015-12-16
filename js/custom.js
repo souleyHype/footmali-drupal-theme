@@ -451,39 +451,6 @@
 
                 });
 
-
-
-
-                /* =========================================================
-                 8. Pie chart
-                 ============================================================ */
-
-                Modernizr.load([
-                    {
-                        load: [kopa_variable.url.template_directory_uri + 'js/excanvas.compiled.js', kopa_variable.url.template_directory_uri + 'js/excanvas.js', kopa_variable.url.template_directory_uri + 'js/jquery.easypiechart.js'],
-                        complete: function () {
-
-                            var jQuerychart = $('.chart');
-                            jQuerychart.easyPieChart({
-                                barColor: '#ea2e2b',
-                                trackColor: "#e5e5e5",
-                                lineWidth: '8',
-                                lineCap: "square",
-                                size: '66',
-                                scaleColor: false,
-                                animate: 1000,
-                                onStep: function(from, to, percent) {
-                                    $(this.el).find('.percent').text(Math.round(percent));
-                                }
-                            });
-                            var chart = window.chart = jQuerychart.data('easyPieChart');
-
-                        }
-                    }
-                ]);
-
-
-
                 /* ============================================
                  9. Single-share-filter
                  =============================================== */
