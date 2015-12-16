@@ -25,6 +25,17 @@
                     $('.kopa-entry-list ul:empty').first().html(items);
                 }
             });
+
+            function validateEmail(email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+
+            // Submit footer newsletter
+            $('#mc-embedded-subscribe-form .search-submit').click( function(event){
+                // hide form
+                $('#bottom-sidebar .bottom-area-3').hide();
+            });
         }
     };
 
