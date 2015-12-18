@@ -10,9 +10,10 @@ global $user;
         <div class="wrapper">
 
             <div class="header-top-left">
-                <?php if(!$user->uid): ?>
+                
                 <div class="kopa-user">
                     <ul class="clearfix">
+                    <?php if(!$user->uid): ?>
                         <li>
                             <a href="#" data-toggle="modal" data-target="#footmali_user_login_modal" class="footmali_login_modal_button"><?php echo t('Sign in'); ?></a>
                         </li>
@@ -20,10 +21,18 @@ global $user;
                         <li>
                             <a href="#"  data-toggle="modal" data-target="#footmali_register_modal" class="footmali_register_modal_button"><?php echo t('Register'); ?></a>
                         </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="/users/<?php echo $user->name; ?>"><?php echo t('Account settings'); ?></a>
+                        </li>
+                        <li>&nbsp;|&nbsp;</li>
+                        <li>
+                            <a href="/user/logout"><?php echo t('Log out'); ?></a>
+                        </li>
+                    <?php endif; ?>
                     </ul>
                 </div>
                 <!-- kopa-user -->
-                <?php endif; ?>
 
                 <div class="social-links style-color">
                     <ul class="clearfix">
