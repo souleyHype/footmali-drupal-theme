@@ -63,6 +63,15 @@ global $theme_path;
         </style>
     </noscript>
 
+    <!-- remove admin menu for mobile -->
+    <?php  if(footmali_ismobile()): ?>
+        <style type="text/css">
+            #admin-menu{ display:none; }
+            body.admin-menu {
+                margin-top: 0 !important;
+            }
+        </style>
+    <?php endif; ?>
     <script>
         var footmali = {
             template_directory: "/<?php echo $theme_path; ?>/"
