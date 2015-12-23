@@ -1,5 +1,6 @@
 /**
- *  1.  top Menu
+ *  0. Custom
+    1.  top Menu
     2.  Main Menu
     3.  Search box
     4.  Accordion
@@ -76,6 +77,21 @@
                 var map;
 
 
+                /* =========================================================
+                 0. Custom
+                 ============================================================ */
+                
+                // Mailchimp subscribe popup
+                 Modernizr.load([{
+                    load: kopa_variable.url.template_directory_uri + 'js/jquery.cookie.js',
+                    complete: function () {
+                        var showModal = $.cookie('MCEvilPopupClosed');
+                        if (showModal === undefined) {
+                            $('#mailchimp-modal').modal('show');
+                            $.cookie('MCEvilPopupClosed', 'yes', {expires: 30} );
+                        }
+                    }
+                }]);
 
                 /* =========================================================
                  1. top Menu

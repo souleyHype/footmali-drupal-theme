@@ -1,4 +1,9 @@
 <?php $headlines = footmali_headline_articles(); ?>
+<?php
+    $block = block_load('views', 'news-most_read_articles');
+    $block_array = _block_render_blocks(array($block));
+    $block_render = _block_get_renderable_array($block_array);
+?>
 
 <div class="widget kopa-tab-1-widget">
     <div class="kopa-tab style7">
@@ -23,10 +28,7 @@
             </div>
             <!-- tab-pane -->
             <div class="tab-pane" id="news">
-                <?php
-                $most_read_block = module_invoke('views', 'block_view', 'news-most_read_articles');
-                print render($most_read_block);
-                ?>
+                <?php print render($block_render); ?>
             </div>
             <!-- tab-pane -->
         </div>

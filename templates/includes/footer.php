@@ -114,6 +114,10 @@
                             <?php echo drupal_render($register_form['account']['pass']); ?>
                         </div>
 
+                        <div class="form-group">
+                            <?php echo drupal_render($register_form['field_newsletter_subscribe']); ?>
+                        </div>
+
                         <!-- reCaptcha -->
                         <div class="g-recaptcha" data-type="image" data-theme="light" data-sitekey="6LebARMTAAAAAMLo0hs0XrwCxlarDuL-iosAL2UO"></div>
                         <br />

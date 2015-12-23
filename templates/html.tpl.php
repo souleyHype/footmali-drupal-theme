@@ -62,6 +62,13 @@ global $theme_path;
             }
         </style>
     </noscript>
+
+    <script>
+        var footmali = {
+            template_directory: "/<?php echo $theme_path; ?>/"
+        };
+    </script>
+    <script src="/<?php echo $theme_path; ?>/js/modernizr.custom.js"></script>
 </head>
 <body class="<?php echo $is_admin? 'admin_user': 'none_admin_user'; ?> <?php echo $is_front ? 'kopa-home-page' : 'kopa-sub-page kopa-single-page';?> <?php print $classes; ?>" <?php print $attributes; ?>>
     <div id="fb-root"></div>
@@ -70,12 +77,6 @@ global $theme_path;
     <?php print $page_bottom; ?>
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
-    <script>
-        var footmali = {
-            template_directory: "/<?php echo $theme_path; ?>/"
-        };
-    </script>
-    <script src="/<?php echo $theme_path; ?>/js/modernizr.custom.js"></script>
     
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -86,13 +87,24 @@ global $theme_path;
         }(document, 'script', 'facebook-jssdk'));</script>
     <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    <?php if($is_front && !footmali_ismobile()) : ?>
-        <!-- Mailchimp subscribe popup -->
-        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-        <script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"84641bbbd87416b83377d69d6","lid":"a355837c60"}) })</script>
-    <?php endif; ?>
-
+    
     <?php print $scripts; ?>
+    
+    <!-- Mailchimp subscribe popup -->
+    <?php if($is_front && !footmali_ismobile()) : ?>
+        <div id="mailchimp-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Footmali Newsletter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php include_once('includes/partials/_mailchimp_signup_form.php'); ?> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 </body>
 </html>
