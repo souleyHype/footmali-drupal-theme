@@ -4,7 +4,7 @@ description = Footmali main theme
 
 core        = 7.x
 
-stylesheets[all][] = css/bootstrap.css
+stylesheets[all][] = css/bootstrap.min.css
 stylesheets[all][] = css/font-awesome.css
 stylesheets[all][] = css/superfish.css
 stylesheets[all][] = css/megafish.css

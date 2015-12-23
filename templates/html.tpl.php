@@ -78,6 +78,20 @@ global $theme_path;
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
     
+    <script>
+       WebFontConfig = {
+            google: {
+                families: ['Open Sans:400,300,600,700,800', 'Oswald:400,300,700', 'Roboto Condensed:300italic,400italic,700italic,400,300,700']
+            }
+       };
+
+       (function(d) {
+          var wf = d.createElement('script'), s = d.scripts[0];
+          wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+          s.parentNode.insertBefore(wf, s);
+       })(document);
+    </script>
+
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
