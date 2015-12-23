@@ -215,7 +215,7 @@ $published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date(
             <?php echo footmali_trim_paragraph($body[0]['value'], 140) . '...'; ?>
             <footer>
                 <!-- todo: link arthur's other articles -->
-                <p class="entry-author"><?php echo t('by'); ?> <?php echo $name; ?></p>
+                <p class="entry-author"><?php echo t('by'); ?> <?php echo $author; ?></p>
             </footer>
         </div>
         <?php echo footmali_render_share_small($nid, $title); ?>
