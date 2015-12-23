@@ -87,23 +87,11 @@ global $theme_path;
         }(document, 'script', 'facebook-jssdk'));</script>
     <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    <script type="text/javascript" src="/<?php echo $theme_path; ?>/js/jquery.cookie.js" async></script>
     
     <?php print $scripts; ?>
     
     <!-- Mailchimp subscribe popup -->
     <?php if($is_front && !footmali_ismobile()) : ?>
-        <script>
-             jQuery(window).load(function() {
-                var showModal = jQuery.cookie('MCEvilPopupClosed');
-                if (showModal === undefined) {
-                    jQuery('#mailchimp-modal').modal('show');
-                    jQuery.cookie('MCEvilPopupClosed', 'yes', {expires: 30} );
-                }
-             });
-        </script>
-
         <div id="mailchimp-modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
