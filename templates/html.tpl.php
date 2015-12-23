@@ -63,6 +63,15 @@ global $theme_path;
         </style>
     </noscript>
 
+    <!-- remove admin menu for mobile -->
+    <?php  if(footmali_ismobile()): ?>
+        <style type="text/css">
+            #admin-menu{ display:none; }
+            body.admin-menu {
+                margin-top: 0 !important;
+            }
+        </style>
+    <?php endif; ?>
     <script>
         var footmali = {
             template_directory: "/<?php echo $theme_path; ?>/"
@@ -78,14 +87,62 @@ global $theme_path;
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
     
-    <script>(function(d, s, id) {
+    <!-- Web Font Loader -->
+    <script>
+       WebFontConfig = {
+            google: {
+                families: ['Open Sans:400,300,600,700,800', 'Oswald:400,300,700', 'Roboto Condensed:300italic,400italic,700italic,400,300,700']
+            }
+       };
+
+       (function(d) {
+          var wf = d.createElement('script'), s = d.scripts[0];
+          wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+          s.parentNode.insertBefore(wf, s);
+       })(document);
+    </script>
+
+    <!-- Facebook -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '714044432027505',
+                status: true,
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
+
+        (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=714044432027505";
+            js.src = "//connect.facebook.net/fr_FR/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Twitter-->
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+ 
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+ 
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    <!-- Google -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
     <?php print $scripts; ?>

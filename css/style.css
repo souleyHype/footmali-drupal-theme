@@ -40,9 +40,7 @@ Tags: light, one-column, two-columns, right-sidebar, fluid-layout, custom-header
  * 1.1 Sass
  * -------------------------------------------------------------------
  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
-@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700);
+
 
 /*---  %Name  ---*/
 a, .kopa-tab.style1 .nav-tabs:after, .kopa-tab.style7 .nav-tabs > li > a:before, .kopa-tab.style9 .nav-tabs > li:first-child > a:before, .kopa-tab.style10 .nav-tabs > li:first-child > a:before, .kopa-search-box .search-form .search-submit, .main-menu > li ul.sub-menu li, .main-menu-2 > li ul.sub-menu li, .thumb-icon, .kopa-pagination ul li a.prev:after, .kopa-pagination ul li a.next:after, .contact-box input:focus, .contact-box textarea:focus, .comment-box input:focus, .comment-box textarea:focus, .filters-options li, .filters-options li:before, .filters-options li:after, .kopa-loadmore span, .widget_categories > ul > li, .widget_categories ul.menu > li,

@@ -105,8 +105,11 @@ if($page){
 
 }
 
-$published_on  = 'Le ' . date('d/m/Y à H:i:s', $node->created);
-//$published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y à H:i:s', $node->changed) : '';
+$author_data = user_load($node->uid);
+$author = $author_data->field_first_name[LANGUAGE_NONE][0]['value'] . ' ';
+$author .= $author_data->field_last_name[LANGUAGE_NONE][0]['value'];
+$published_on  = 'Le ' . date('d/m/Y', $node->created);
+$published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y', $node->changed) : '';
 
 ?>
 <?php if($page): ?>
@@ -121,7 +124,7 @@ $published_on  = 'Le ' . date('d/m/Y à H:i:s', $node->created);
 
             <h4 class="entry-title"><?php print $title; ?></h4>
             <div class="entry-meta">
-                <span class="entry-author"><?php echo t('by'); ?> <?php echo $node->name; ?></a></span>
+                <span class="entry-author"><?php echo t('by'); ?> <?php echo $author; ?></a></span>
                 <span class="entry-date"><?php echo $published_on; ?></span>
             </div>
             <div class="entry-thumb">
@@ -212,7 +215,7 @@ $published_on  = 'Le ' . date('d/m/Y à H:i:s', $node->created);
             <?php echo footmali_trim_paragraph($body[0]['value'], 140) . '...'; ?>
             <footer>
                 <!-- todo: link arthur's other articles -->
-                <p class="entry-author"><?php echo t('by'); ?> <?php echo $name; ?></p>
+                <p class="entry-author"><?php echo t('by'); ?> <?php echo $author; ?></p>
             </footer>
         </div>
         <?php echo footmali_render_share_small($nid, $title); ?>

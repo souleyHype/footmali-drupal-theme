@@ -82,19 +82,37 @@
 ?>
 
 <?php
+global $theme_path;
+
 $squad = footmali_get_team_squad($nid);
 $articles = footmali_get_entity_articles($nid);
+
+$default_team_logo = '/' . $theme_path . '/images/default_club_logo.png';
+$team_logo = '<img src="' . $default_team_logo .'" width="50px" height="50px">';
+if(count($field_image) > 0){
+    $team_logo = theme_image_style(array(
+                'style_name' => 'team_logo',
+                'path' => $field_image[0]['uri'],
+                'width' => '',
+                'height' => '',
+            ));
+}
+
 ?>
-<h1><?php print $title; ?></h1>
+<h1><span style="padding-right: 10px;"><?php echo $team_logo; ?></span><?php print $title; ?></h1>
 <div class="team-header mb-30">
     <div class="kopa-tab team-tab style6">
         <ul class="nav nav-tabs">
+            <?php if($squad): ?>
             <li class="active">
                 <a href="#squad" data-toggle="tab"><span><?php echo t('Effectif') ?></span></a>
             </li>
+            <?php endif; ?>
+            <?php if($articles): ?>
             <li>
                 <a href="#articles" data-toggle="tab"><span>Articles</span></a>
             </li>
+        <?php endif; ?>
         </ul>
     </div>
     <!-- fixture-tab -->
@@ -113,14 +131,18 @@ $articles = footmali_get_entity_articles($nid);
                             <article class="entry-item">
                                 <div class="entry-thumb">
                                     <a href="/<?php echo drupal_get_path_alias('node/' . $player->nid); ?>">
-                                        <?php
-                                            echo theme_image_style(array(
-                                                'style_name' => 'squad_player',
-                                                'path' => $player->image,
-                                                'width' => '',
-                                                'height' => '',
-                                            ));
-                                        ?>
+                                    <?php if(!is_null($player->image)): ?>
+                                        <?php 
+                                        echo theme_image_style(array(
+                                            'style_name' => 'squad_player',
+                                            'path' => $player->image,
+                                            'width' => '',
+                                            'height' => '',
+                                        ));
+                                        ?> 
+                                    <?php else: ?>
+                                        <img src="/<?php echo $theme_path ?>/images/default_player_profile_small.png" width="190px" height="146px">
+                                    <?php endif; ?>
                                     </a>
                                     <div class="thumb-icon style3"><?php echo $player->number; ?></div>
                                 </div>
