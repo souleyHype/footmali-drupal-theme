@@ -80,22 +80,35 @@
  * @ingroup themeable
  */
 ?>
-<?php
 
+<?php
+global $theme_path;
 $position = taxonomy_term_load($field_position[0]['tid']);
 $height = '';
 
 if(!empty($field_height[0]['value'])){
-    $height = explode('.', $field_height[0]['value']);
+    $formatted_number = number_format($field_height[0]['value'], 2);
+    $height = explode('.', $formatted_number);
     $height = $height[0] . 'm ' . $height[1];
 }
 
 $player_squad = footmali_get_player_squad($nid);
+
+$default_player_profile = '/' . $theme_path . '/images/default_player_profile.png';
+$player_profile = '<img src="' . $default_player_profile .'" width="300px" height="350px">';
+if(count($field_image) > 0){
+    $player_profile = theme_image_style(array(
+                'style_name' => 'player',
+                'path' => $field_image[0]['uri'],
+                'width' => '',
+                'height' => '',
+            ));
+}
 ?>
 <h1><?php echo $title; ?></h1>
 <div class="row">
     <div id="player-image" class="col-md-6 col-sm-6 col-xs-12">
-        <?php echo footmali_output_image('player', $node->field_image); ?>
+        <?php echo $player_profile; ?>
     </div>
     <div id="player-profile" class="col-md-6 col-sm-6 col-xs-12">
         <div class="player-profile" style="width: 100%">
@@ -118,7 +131,7 @@ $player_squad = footmali_get_player_squad($nid);
                 <?php if($field_dob && !empty($field_dob[0]['value'])): ?>
                     <li>
                         <div class="p-left"><?php echo t('Date Naissance'); ?>:</div>
-                        <div class="p-right"><?php echo date('d/m/Y', strtotime($field_dob[0]['value'])); ?></div>
+                        <div class="p-right"><?php echo date('d/M/Y', strtotime($field_dob[0]['value'])); ?></div>
                     </li>
                 <?php endif; ?>
 

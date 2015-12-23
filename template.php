@@ -420,8 +420,8 @@ function footmali_get_team_squad($nid){
     $query .= "JOIN node ON node.nid = squad.player_nid ";
     $query .= "JOIN field_data_field_position as pp ON node.nid = pp.entity_id ";
     $query .= "JOIN taxonomy_term_data as tax ON pp.field_position_tid = tax.tid ";
-    $query .= "JOIN field_data_field_image as fimg ON node.nid = fimg.entity_id ";
-    $query .= "JOIN file_managed as fm ON fimg.field_image_fid = fm.fid ";
+    $query .= "LEFT JOIN field_data_field_image as fimg ON node.nid = fimg.entity_id ";
+    $query .= "LEFT JOIN file_managed as fm ON fimg.field_image_fid = fm.fid ";
     $query .= "WHERE node.type = 'player' ";
 
     $query_result = db_query($query, array(':team_id' => $nid));
