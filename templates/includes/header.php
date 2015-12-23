@@ -23,7 +23,7 @@ global $user;
                         </li>
                     <?php else: ?>
                         <li>
-                            <a href="/users/<?php echo $user->name; ?>"><?php echo t('Account settings'); ?></a>
+                            <a href="/users/<?php echo $user->name; ?>"><?php echo t('Account'); ?></a>
                         </li>
                         <li>&nbsp;|&nbsp;</li>
                         <li>
