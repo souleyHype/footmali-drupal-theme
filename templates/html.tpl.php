@@ -78,6 +78,7 @@ global $theme_path;
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
     
+    <!-- Web Font Loader -->
     <script>
        WebFontConfig = {
             google: {
@@ -92,14 +93,47 @@ global $theme_path;
        })(document);
     </script>
 
-    <script>(function(d, s, id) {
+    <!-- Facebook -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '714044432027505',
+                status: true,
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
+
+        (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=714044432027505";
+            js.src = "//connect.facebook.net/fr_FR/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Twitter-->
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+ 
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+ 
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    <!-- Google -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
     <?php print $scripts; ?>
