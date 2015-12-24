@@ -35,7 +35,7 @@ function footmali_css_alter(&$css) {
     global $user;
     unset($css[drupal_get_path('module','system').'/system.theme.css']);
 
-    // Remove unesscessary css from mobile view.
+    // Remove unesscessary css.
     //if(footmali_ismobile()){
         unset($css[drupal_get_path('module','views').'/css/views.css']);
 
@@ -61,12 +61,12 @@ function footmali_preprocess_page(&$variables) {
 
         $main_links = '';
         foreach($menu_tree_array as $menu):
-            $main_links .= '<li><a href="' . url($menu['link']['link_path']) . '"><span>' . $menu['link']['link_title'] .'</span></a>';
+            $main_links .= '<li><a href="/' . url($menu['link']['link_path']) . '"><span>' . $menu['link']['link_title'] .'</span></a>';
 
             if(count($menu['below']) > 0):
                 $main_links .= '<ul class="sub-menu">';
                 foreach($menu['below'] as $sub_menu):
-                    $main_links .= '<li><a href="' . drupal_get_path_alias($sub_menu['link']['link_path'])  . '">' . $sub_menu['link']['link_title'] . '</a></li>';
+                    $main_links .= '<li><a href="/' . drupal_get_path_alias($sub_menu['link']['link_path'])  . '">' . $sub_menu['link']['link_title'] . '</a></li>';
                 endforeach;
                 $main_links .= '</ul>';
             endif;
