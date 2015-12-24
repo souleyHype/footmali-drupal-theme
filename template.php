@@ -61,7 +61,7 @@ function footmali_preprocess_page(&$variables) {
 
         $main_links = '';
         foreach($menu_tree_array as $menu):
-            $main_links .= '<li><a href="/' . url($menu['link']['link_path']) . '"><span>' . $menu['link']['link_title'] .'</span></a>';
+            $main_links .= '<li><a href="' . url($menu['link']['link_path']) . '"><span>' . $menu['link']['link_title'] .'</span></a>';
 
             if(count($menu['below']) > 0):
                 $main_links .= '<ul class="sub-menu">';
