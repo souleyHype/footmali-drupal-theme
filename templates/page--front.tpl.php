@@ -75,7 +75,7 @@
 
 <?php global $theme_path; ?>
 
-<?php include_once('includes/header.php'); ?>
+<?php include('includes/header.php'); ?>
 
     <div id="main-content" class="style1">
 
@@ -83,7 +83,7 @@
         <div class="wrapper mb-30">
 
             <div class="widget-area-1">
-                <?php include_once('includes/partials/_homepage_featured_carrousel.php'); ?>
+                <?php include('includes/partials/_homepage_featured_carrousel.php'); ?>
             </div>
             <!-- widget-area-1 -->
 
@@ -106,25 +106,25 @@
 
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
                     <?php if(footmali_ismobile()): ?>
-                        <?php include_once('includes/partials/_mobile_top_stories.php'); ?>
+                        <?php include('includes/partials/_mobile_top_stories.php'); ?>
                     <?php else: ?>
-                        <?php include_once('includes/partials/_top_stories.php'); ?>
+                        <?php include('includes/partials/_top_stories.php'); ?>
                     <?php endif; ?>
-                        <?php include_once('includes/partials/_video_carrousel.php'); ?>
+                        <?php include('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->
                     <?php if(!footmali_ismobile()): ?>
-                        <?php include_once('includes/sidebar.php'); ?>
+                        <?php include('includes/sidebar.php'); ?>
                     <?php endif; ?>
                 </div>
                 <!-- row -->
             </div>
             <!-- content-wrap-->
-
+            <?php include('includes/partials/_homepage_fixtures_standing.php'); ?>
         </div>
         <!-- wrapper -->
 
     </div>
     <!-- main-content -->
 
-<?php include_once('includes/footer.php'); ?>
+<?php include('includes/footer.php'); ?>

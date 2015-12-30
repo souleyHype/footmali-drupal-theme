@@ -101,7 +101,6 @@ $away_team_short_name = $away_team->field_short_name[LANGUAGE_NONE][0]['value'];
 $away_team_score = $node->field_away_team_score[LANGUAGE_NONE][0]['value'];
 ?>
 <div class="kopa-entry-post">
-
     <article class="entry-item">
         <h4 class="entry-title"><?php echo $home_team->title; ?> vs <?php echo $away_team->title; ?></h4>
         <div class="match-item last-item mb-20">
@@ -155,6 +154,5 @@ $away_team_score = $node->field_away_team_score[LANGUAGE_NONE][0]['value'];
                 <!-- <a href="#" class="more-detail">Match news<i class="fa fa-chevron-right"></i></a> -->
             </footer>
         </div>
-        </article>
-
+    </article>
 </div>

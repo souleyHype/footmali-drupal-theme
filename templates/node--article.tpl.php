@@ -106,8 +106,12 @@ if($page){
 }
 
 $author_data = user_load($node->uid);
-$author = $author_data->field_first_name[LANGUAGE_NONE][0]['value'] . ' ';
-$author .= $author_data->field_last_name[LANGUAGE_NONE][0]['value'];
+$author = $node->name;
+if(isset($author_data->field_first_name) && isset($author_data->field_last_name)){
+    $author = $author_data->field_first_name[LANGUAGE_NONE][0]['value'] . ' ';
+    $author .= $author_data->field_last_name[LANGUAGE_NONE][0]['value'];
+}
+
 $published_on  = 'Le ' . date('d/m/Y', $node->created);
 $published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y', $node->changed) : '';
 

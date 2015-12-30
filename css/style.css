@@ -6257,6 +6257,7 @@ ul.style1 > li:first-child {
     background: #666666;
     color: #fff;
     left: 50%;
+    z-index: 1;
 }
 
 .r-item .r-side {
@@ -6324,7 +6325,8 @@ ul.style1 > li:first-child {
     padding: 21px 70px;
 }
 
-.kopa-fixture-widget .r-item > p {
+.kopa-fixture-widget .r-item > p,
+.kopa-result-widget .r-item > p {
     padding: 9px 20px;
     background: #e5e5e5;
     margin-bottom: 0;
