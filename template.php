@@ -509,7 +509,7 @@ function footmali_get_player_other_squad($nid){
 }
 
 function footmali_get_player_squad($nid){
-    $query  = "SELECT YEAR(season.field_season_value) season, steam.field_squad_team_nid team, splayer.field_squad_player_nid player ";
+    $query  = "SELECT season.field_season_value season, steam.field_squad_team_nid team, splayer.field_squad_player_nid player ";
     $query .= "FROM node ";
     $query .= "JOIN field_data_field_squad_team as steam ";
     $query .= "ON node.nid = steam.entity_id ";
@@ -524,7 +524,7 @@ function footmali_get_player_squad($nid){
     $query .= "WHERE node.type = 'squad' ";
     $query .= "AND splayer.field_squad_player_nid = :nid ";
     $query .= "AND team_type.field_team_type_value = 'club' ";
-    $query .= "ORDER BY YEAR(season.field_season_value) DESC ";
+    $query .= "ORDER BY season.field_season_value DESC ";
     $query .= "LIMIT 1";
 
     $query_result = db_query($query, array(':nid' => $nid));
@@ -544,7 +544,7 @@ function footmali_get_player_squad($nid){
 }
 
 function footmali_get_matches($season, $type){
-    $query  = "SELECT n.nid, YEAR(s.field_season_value) as season, mstatus.field_match_played_value as matchstatus, ";
+    $query  = "SELECT n.nid, s.field_season_value as season, mstatus.field_match_played_value as matchstatus, ";
     $query .= "DATE_FORMAT(mdate.field_date_time_value, '%d/%m/%y %Hh%i') as date, hteam.field_home_team_nid as hometeam, ";
     $query .= "hscore.field_home_team_score_value as goalsfor, ascore.field_away_team_score_value as goalsagainst, ";
     $query .= "ateam.field_away_team_nid as awayteam, taxonomy_term_data.name as round ";
@@ -559,25 +559,18 @@ function footmali_get_matches($season, $type){
     $query .= "JOIN field_data_field_competition_round as mround ON n.nid = mround.entity_id ";
     $query .= "JOIN taxonomy_term_data ON mround.field_competition_round_target_id = taxonomy_term_data.tid ";
     $query .= "WHERE n.type = 'fixture' ";
-    $query .= "AND YEAR(s.field_season_value) = :season ";
+    $query .= "AND s.field_season_value = :season ";
     $query .= "AND mstatus.field_match_played_value = :type ";
     $query .= "ORDER BY taxonomy_term_data.name ASC, mdate.field_date_time_value DESC";
 
 
     $query_result = db_query($query, array(':season' => $season, ':type' => $type));
-    $fixture_ids = array();
 
-    foreach($query_result as $fixture){
-        array_push($fixture_ids, $fixture->nid);
-    }
-
-    $fixtures = count($fixture_ids) > 0 ? entity_load('node', $fixture_ids) : false;
-
-    return $fixtures;
+    return $query_result;
 }
 
 function footmali_get_standings($season, $limit=30){
-    $fixture_query  = "SELECT n.nid, YEAR(s.field_season_value) as season, ";
+    $fixture_query  = "SELECT n.nid, s.field_season_value as season, ";
     $fixture_query .= "hteam.field_home_team_nid as hometeam, ";
     $fixture_query .= "hscore.field_home_team_score_value as goalsfor, ";
     $fixture_query .= "ascore.field_away_team_score_value as goalsagainst, ";
@@ -591,7 +584,7 @@ function footmali_get_standings($season, $limit=30){
     $fixture_query .= "JOIN field_data_field_match_played as mstatus ON n.nid = mstatus.entity_id ";
     $fixture_query .= "WHERE n.type = 'fixture' ";
     $fixture_query .= "AND mstatus.field_match_played_value = 1 ";
-    $fixture_query .= "AND YEAR(s.field_season_value) = :season ";
+    $fixture_query .= "AND s.field_season_value = :season ";
 
     $query  = "SELECT team, count(*) played, ";
     $query .= "count(case when goalsfor > goalsagainst then 1 end) wins, ";

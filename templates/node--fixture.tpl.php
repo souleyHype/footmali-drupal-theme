@@ -93,11 +93,11 @@ $default_team_logo = '/' . $theme_path . '/images/default_club_logo.png';
 $team_logo = '<img src="' . $default_team_logo .'" width="90px" height="90px">';
 
 $home_team = $node->field_home_team[LANGUAGE_NONE][0]['node'];
-$home_team_short_name = $home_team->field_short_name[LANGUAGE_NONE][0]['value'];
+$home_team_short_name = !empty($home_team->field_short_name) ? $home_team->field_short_name[LANGUAGE_NONE][0]['value'] : $home_team->title;
 $home_team_score = $node->field_home_team_score[LANGUAGE_NONE][0]['value'];
 
 $away_team = $node->field_away_team[LANGUAGE_NONE][0]['node'];
-$away_team_short_name = $away_team->field_short_name[LANGUAGE_NONE][0]['value'];
+$away_team_short_name = !empty($away_team->field_short_name) ? $away_team->field_short_name[LANGUAGE_NONE][0]['value'] : $away_team->title;
 $away_team_score = $node->field_away_team_score[LANGUAGE_NONE][0]['value'];
 ?>
 <div class="kopa-entry-post">

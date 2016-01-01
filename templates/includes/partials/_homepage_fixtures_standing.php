@@ -3,9 +3,9 @@ global $theme_path;
 $default_team_logo = '/' . $theme_path . '/images/default_club_logo.png';
 $team_logo = '<img src="' . $default_team_logo .'" width="90px" height="90px">';
 
-$fixtures = footmali_get_matches(2016, 0);
-$results = footmali_get_matches(2016, 1);
-$standings = footmali_get_standings(2016);
+$fixtures = footmali_get_matches('2015-2016', 0);
+$results = footmali_get_matches('2015-2016', 1);
+$standings = footmali_get_standings('2015-2016');
 
 ?>
 
@@ -25,17 +25,19 @@ $standings = footmali_get_standings(2016);
 			            <div class="owl-carousel owl-carousel-2">
 			            	<?php foreach ($results as $result): ?>
 			            		<?php 
-			            			$home_team = node_load($result->field_home_team[LANGUAGE_NONE][0]['nid']);
-			            			$away_team = node_load($result->field_away_team[LANGUAGE_NONE][0]['nid']);
+
+			            			$home_team = node_load($result->hometeam);
+			            			$away_team = node_load($result->awayteam);
 
 									$home_team_short_name = !empty($home_team->field_short_name) ? $home_team->field_short_name[LANGUAGE_NONE][0]['value'] : $home_team->title;
 									$away_team_short_name = !empty($away_team->field_short_name) ? $away_team->field_short_name[LANGUAGE_NONE][0]['value'] : $away_team->title;
 
-			            			$home_team_score = $result->field_home_team_score[LANGUAGE_NONE][0]['value'];
-			            			$away_team_score = $result->field_away_team_score[LANGUAGE_NONE][0]['value'];
+			            			$home_team_score = $result->goalsfor;
+			            			$away_team_score = $result->goalsagainst;
 
-			            			$match_date = $result->field_date_time[LANGUAGE_NONE][0]['value'];
-			            			$round = taxonomy_term_load($result->field_competition_round[LANGUAGE_NONE][0]['target_id']);
+			            			$match_date = $result->date;
+			            			$round = $result->round;
+
 			            		?>
 				                <div class="item">
 				                    <div class="r-item">
@@ -72,7 +74,7 @@ $standings = footmali_get_standings(2016);
 				                                <!-- <p>K. Benny (78)</p> -->
 				                            </div>
 				                        </a>
-				                        <p><b><?php echo $round->name; ?>: </b><?php echo date('l, d/m/Y', strtotime($match_date)); ?></p>
+				                        <p><b><?php echo $round; ?>: </b><?php echo $match_date; ?></p>
 				                    </div>
 				                </div>
 				                <!-- item -->
@@ -91,17 +93,17 @@ $standings = footmali_get_standings(2016);
 			            <div class="owl-carousel owl-carousel-2">
 			            	<?php foreach ($fixtures as $fixture): ?>
 			            		<?php 
-			            			$home_team = node_load($fixture->field_home_team[LANGUAGE_NONE][0]['nid']);
-			            			$away_team = node_load($fixture->field_away_team[LANGUAGE_NONE][0]['nid']);
+			            			$home_team = node_load($fixture->hometeam);
+			            			$away_team = node_load($fixture->awayteam);
 
 									$home_team_short_name = !empty($home_team->field_short_name) ? $home_team->field_short_name[LANGUAGE_NONE][0]['value'] : $home_team->title;
 									$away_team_short_name = !empty($away_team->field_short_name) ? $away_team->field_short_name[LANGUAGE_NONE][0]['value'] : $away_team->title;
 
-			            			$home_team_score = $fixture->field_home_team_score[LANGUAGE_NONE][0]['value'];
-			            			$away_team_score = $fixture->field_away_team_score[LANGUAGE_NONE][0]['value'];
+			            			$home_team_score = $fixture->goalsfor;
+			            			$away_team_score = $fixture->goalsagainst;
 
-			            			$match_date = $fixture->field_date_time[LANGUAGE_NONE][0]['value'];
-			            			$round = taxonomy_term_load($fixture->field_competition_round[LANGUAGE_NONE][0]['target_id']);
+			            			$match_date = $fixture->date;
+			            			$round = $fixture->round;
 			            		?>
 				                <div class="item">
 				                    <div class="r-item">
@@ -132,7 +134,7 @@ $standings = footmali_get_standings(2016);
 				                                <h5><?php echo strlen($away_team->title) < 15 ? $away_team->title : $home_team_short_name; ?></h5>
 				                            </div>
 				                        </a>
-				                        <p><b><?php echo $round->name; ?>: </b><?php echo date('l, d/m/Y', strtotime($match_date)); ?></p>
+				                        <p><b><?php echo $round; ?>: </b><?php echo $match_date; ?></p>
 				                    </div>
 				                </div>
 				                <!-- item -->
@@ -161,7 +163,7 @@ $standings = footmali_get_standings(2016);
 				            	<?php foreach ($standings as $index => $row): ?>
 				            		<?php
 				            			$team = node_load($row->team);
-				            			$team_short_name = $team->field_short_name[LANGUAGE_NONE][0]['value'];
+				            			$team_short_name = !empty($team->field_short_name) ? $team->field_short_name[LANGUAGE_NONE][0]['value'] : $team->title;
 				            		?>
 				                <li>
 				                    <div class="t-col"><?php echo $index + 1; ?></div>
