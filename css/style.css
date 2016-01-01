@@ -1477,7 +1477,7 @@ a#logo {
     left: 0;
     width: 100%;
     height: 310px;
-    background: url(images/background/t1.png) no-repeat;
+    background: url(../images/t1.png) no-repeat;
 }
 
 .kopa-area-1 .t2 {
@@ -1486,7 +1486,7 @@ a#logo {
     left: 0;
     width: 100%;
     height: 310px;
-    background: url(images/background/t2.png) no-repeat;
+    background: url(../images/t2.png) no-repeat;
 }
 
 .kopa-area-2 {
