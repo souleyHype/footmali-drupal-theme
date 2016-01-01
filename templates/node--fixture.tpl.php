@@ -81,26 +81,31 @@
  */
 ?>
 <?php
+global $theme_path;
+
 $match_date = $node->field_date_time[LANGUAGE_NONE][0]['value'];
 
 $competition = $node->field_competition[LANGUAGE_NONE][0]['entity'];
 $competition_parent = isset($competition->parent[0]) ? taxonomy_term_load($competition->parent[0]) : null;
 $competition_round = $node->field_competition_round[LANGUAGE_NONE][0]['entity'];
 
+$default_team_logo = '/' . $theme_path . '/images/default_club_logo.png';
+$team_logo = '<img src="' . $default_team_logo .'" width="90px" height="90px">';
 
 $home_team = $node->field_home_team[LANGUAGE_NONE][0]['node'];
+$home_team_short_name = !empty($home_team->field_short_name) ? $home_team->field_short_name[LANGUAGE_NONE][0]['value'] : $home_team->title;
 $home_team_score = $node->field_home_team_score[LANGUAGE_NONE][0]['value'];
 
-$away_team_score = $node->field_away_team_score[LANGUAGE_NONE][0]['value'];
 $away_team = $node->field_away_team[LANGUAGE_NONE][0]['node'];
+$away_team_short_name = !empty($away_team->field_short_name) ? $away_team->field_short_name[LANGUAGE_NONE][0]['value'] : $away_team->title;
+$away_team_score = $node->field_away_team_score[LANGUAGE_NONE][0]['value'];
 ?>
 <div class="kopa-entry-post">
-
     <article class="entry-item">
-        <h4 class="entry-title"><?php echo $home_team->title; ?> VS <?php echo $away_team->title; ?></h4>
+        <h4 class="entry-title"><?php echo $home_team->title; ?> vs <?php echo $away_team->title; ?></h4>
         <div class="match-item last-item mb-20">
             <header>
-                <p><?php echo $match_date; ?></p>
+                <p><?php echo date('l, d/m/Y', strtotime($match_date)); ?></p>
                 <span>
                     <?php echo !is_null($competition_parent) ? $competition_parent->name . ': ' : ''; ?>
                     <?php echo $competition->name; ?>
@@ -119,29 +124,35 @@ $away_team = $node->field_away_team[LANGUAGE_NONE][0]['node'];
                 </a>
                 <a class="r-side left" href="/<?php echo drupal_get_path_alias('node/' . $home_team->nid); ?>">
                     <div class="r-thumb">
-                        <?php echo footmali_output_image('fixture_result_team_logo', $home_team->field_image); ?>
+                        <?php 
+                            echo count($home_team->field_image) > 0 ? 
+                                footmali_output_image('fixture_result_team_logo', $home_team->field_image) : $team_logo; 
+                        ?>
                     </div>
                     <div class="r-content">
-                        <h5><?php echo $home_team->title; ?></h5>
+                        <h5><?php echo strlen($home_team->title) < 15 ? $home_team->title : $home_team_short_name; ?></h5>
                             <!-- @todo: goal scorers -->
                             <!-- <p>Sanchen (27 pen), Sanobo (78)</p>-->
                     </div>
                 </a>
                 <a class="r-side right" href="/<?php echo drupal_get_path_alias('node/' . $away_team->nid); ?>">
                     <div class="r-thumb">
-                        <?php echo footmali_output_image('fixture_result_team_logo', $away_team->field_image); ?>
+                        <?php 
+                            echo count($away_team->field_image) > 0 ? 
+                                footmali_output_image('fixture_result_team_logo', $away_team->field_image) : $team_logo; 
+                        ?>
                     </div>
                     <div class="r-content">
-                        <h5><?php echo $away_team->title; ?></h5>
+                        <h5><?php echo strlen($away_team->title) < 15 ? $away_team->title : $away_team_short_name; ?></h5>
                         <!-- @todo: goal scorers -->
                         <!-- <p>Sanchen (27 pen), Sanobo (78)</p>-->
                     </div>
                 </a>
             </div>
             <footer>
-                <a href="#" class="more-detail">Match news<i class="fa fa-chevron-right"></i></a>
+                &nbsp;
+                <!-- <a href="#" class="more-detail">Match news<i class="fa fa-chevron-right"></i></a> -->
             </footer>
         </div>
-        </article>
-
+    </article>
 </div>
