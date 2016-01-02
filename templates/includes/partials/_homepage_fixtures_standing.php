@@ -15,7 +15,7 @@ $standings = footmali_get_standings('2015-2016');
      <div class="content-wrap">
         <div class="row">
             <div class="widget-area-12">
-				<?php if($results): ?>
+				<?php if($results && $results->rowCount() > 0): ?>
 			    <div class="widget kopa-result-widget">
 			        <h3 class="widget-title style6"><?php echo t('Latest Results'); ?> </h3>
 			        <div class="widget-content">
@@ -86,7 +86,7 @@ $standings = footmali_get_standings('2015-2016');
 			    <!-- widget --> 
 				<?php endif; ?>
 
-				<?php if($fixtures): ?>
+				<?php if($fixtures  && $fixtures->rowCount() > 0): ?>
 			    <div class="widget kopa-fixture-widget">
 			        <h3 class="widget-title style6"><?php echo t('Upcoming Games'); ?></h3>
 			        <div class="widget-content">
@@ -131,7 +131,7 @@ $standings = footmali_get_standings('2015-2016');
 						                        ?>
 				                            </div>
 				                            <div class="r-content">
-				                                <h5><?php echo strlen($away_team->title) < 15 ? $away_team->title : $home_team_short_name; ?></h5>
+				                                <h5><?php echo strlen($away_team->title) < 15 ? $away_team->title : $away_team_short_name; ?></h5>
 				                            </div>
 				                        </a>
 				                        <p><b><?php echo $round; ?>: </b><?php echo $match_date; ?></p>
