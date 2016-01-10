@@ -46,6 +46,7 @@
 <?php
 
 global $theme_path;
+echo "hello";
 
 ?>
 <!DOCTYPE html>
