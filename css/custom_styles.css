@@ -65,6 +65,13 @@
 }
 
 /**
+* Homepage
+*/
+.sync1 .entry-item .entry-content, .sync5 .entry-item .entry-content {
+    bottom: 0;
+}
+
+/**
 * main menu override
 */
 .main-menu, .main-menu-2 {
