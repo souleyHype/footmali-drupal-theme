@@ -65,18 +65,31 @@
 }
 
 /**
+* Homepage
+*/
+.sync1 .entry-item .entry-content, .sync5 .entry-item .entry-content {
+    bottom: 0;
+}
+
+/**
 * main menu override
 */
 .main-menu, .main-menu-2 {
     position: relative;
     border: none;
     margin: 0;
-    margin-left: 50%;
+    margin-left: 46.5%%;
     width: 70%;
 }
 
 .main-menu > li, .main-menu-2 > li {
     float: left;
+}
+
+@media screen and (max-width: 1160px) {
+    .main-menu, .main-menu-2 {
+        margin-left: 35%;
+    }
 }
 
 /*
