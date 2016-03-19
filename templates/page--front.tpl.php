@@ -111,7 +111,7 @@
                             <?php include('includes/partials/_top_stories.php'); ?>
                         <?php endif; ?>
 
-                        <?php include_once('partials/_ad_content_wide.php'); ?>
+                        <?php include('includes/partials/_ad_content_wide.php'); ?>
                         <?php include('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->
