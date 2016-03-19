@@ -105,11 +105,13 @@
                     <div class="kopa-main-col">
 
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-                    <?php if(footmali_ismobile()): ?>
-                        <?php include('includes/partials/_mobile_top_stories.php'); ?>
-                    <?php else: ?>
-                        <?php include('includes/partials/_top_stories.php'); ?>
-                    <?php endif; ?>
+                        <?php if(footmali_ismobile()): ?>
+                            <?php include('includes/partials/_mobile_top_stories.php'); ?>
+                        <?php else: ?>
+                            <?php include('includes/partials/_top_stories.php'); ?>
+                        <?php endif; ?>
+
+                        <?php include_once('partials/_ad_content_wide.php'); ?>
                         <?php include('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->

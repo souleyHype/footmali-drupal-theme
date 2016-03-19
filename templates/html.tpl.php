@@ -86,7 +86,7 @@ global $theme_path;
     <?php print $page_bottom; ?>
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
-    
+
     <!-- Web Font Loader -->
     <script>
        WebFontConfig = {
@@ -132,21 +132,21 @@ global $theme_path;
             js.id = id;
             js.src = "https://platform.twitter.com/widgets.js";
             fjs.parentNode.insertBefore(js, fjs);
- 
+
             t._e = [];
             t.ready = function(f) {
                 t._e.push(f);
             };
- 
+
             return t;
         }(document, "script", "twitter-wjs"));
     </script>
 
     <!-- Google -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
+
     <?php print $scripts; ?>
-    
+
     <!-- Mailchimp subscribe popup -->
     <?php if($is_front && !footmali_ismobile()) : ?>
         <div id="mailchimp-modal" class="modal fade" role="dialog">
@@ -157,8 +157,8 @@ global $theme_path;
                         <h4 class="modal-title">Footmali Newsletter</h4>
                     </div>
                     <div class="modal-body">
-                        <?php include_once('includes/partials/_mailchimp_signup_form.php'); ?> 
-                    </div> 
+                        <?php include_once('includes/partials/_mailchimp_signup_form.php'); ?>
+                    </div>
                 </div>
             </div>
         </div>
