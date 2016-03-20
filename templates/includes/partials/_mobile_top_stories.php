@@ -1,14 +1,17 @@
 <?php
+global $pager_page_array, $pager_total;
 $top_articles = footmali_mobile_articles();
 
-$pager_previous = theme_pager_previous(array(
+$pager_previous = theme('pager_previous', array(
   'text' => t('Previous'),
   'element' => 1
 ));
-$pager_next = theme_pager_next(array(
+$pager_next = theme('pager_next', array(
   'text' => t('More'),
   'element' => 1
 ));
+
+$pager_class = $pager_previous && $pager_next ? 'two-button' : 'one-button';
 
 ?>
 <?php if(count($top_articles) > 0): ?>
@@ -37,13 +40,17 @@ $pager_next = theme_pager_next(array(
                 </li>
             <?php endforeach; ?>
         </ul>
-        <div id="mobile-pager" class="btn-group text-center">
+        <div id="mobile-pager" class="btn-group <?php echo $pager_class; ?>">
           <?php if($pager_previous): ?>
-            <button id="pager_previous" type="button " class="btn btn-default pager-button"><?php print $pager_previous; ?></button>
+            <span id="pager_previous" class="btn btn-default pager-button">
+              <?php print $pager_previous; ?>
+            </span>
           <?php endif; ?>
 
           <?php if($pager_next): ?>
-            <button id="pager-next" type="button" class="btn btn-default pager-button"><?php print $pager_next; ?></button>
+            <span id="pager-next" class="btn btn-default pager-button">
+              <?php print $pager_next; ?>
+            </span>
           <?php endif; ?>
         </div>
     </div>

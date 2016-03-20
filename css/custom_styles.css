@@ -82,6 +82,7 @@
 
 .mobile-view #main-content .wrapper {
   margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -137,7 +138,25 @@
 }
 
 .mobile-view #mobile-pager .pager-button {
+  border-color: #1C9E49;
+  padding: 0;
+  border-radius: 0;
+}
+
+.mobile-view #mobile-pager.two-button .pager-button {
   width: 50%;
+}
+
+.mobile-view #mobile-pager.one-button .pager-button {
+  width: 100%;
+}
+
+.mobile-view #mobile-pager .pager-button a {
+  color: #1C9E49;
+  display: block;
+  padding: 5px;
+  font-size: 24px;
+  font-weight: 900;
 }
 
 /**
