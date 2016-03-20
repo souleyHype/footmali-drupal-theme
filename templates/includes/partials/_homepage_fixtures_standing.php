@@ -15,7 +15,7 @@ $standings = footmali_get_standings('2015-2016');
      <div class="content-wrap">
         <div class="row">
             <div class="widget-area-12">
-				<?php if($results && $results->rowCount() > 0): ?>
+				<?php if($results && count($results) > 0): ?>
 			    <div class="widget kopa-result-widget">
 			        <h3 class="widget-title style6"><?php echo t('Latest Results'); ?> </h3>
 			        <div class="widget-content">
@@ -24,7 +24,7 @@ $standings = footmali_get_standings('2015-2016');
 			            </div>
 			            <div class="owl-carousel owl-carousel-2">
 			            	<?php foreach ($results as $result): ?>
-			            		<?php 
+			            		<?php
 
 			            			$home_team = node_load($result->hometeam);
 			            			$away_team = node_load($result->awayteam);
@@ -52,9 +52,9 @@ $standings = footmali_get_standings('2015-2016');
 				                        </a>
 				                        <a class="r-side left" href="/<?php echo drupal_get_path_alias('node/' . $home_team->nid); ?>">
 				                            <div class="r-thumb">
-				                                 <?php 
-						                            echo count($home_team->field_image) > 0 ? 
-						                                footmali_output_image('fixture_result_team_logo', $home_team->field_image) : $team_logo; 
+				                                 <?php
+						                            echo count($home_team->field_image) > 0 ?
+						                                footmali_output_image('fixture_result_team_logo', $home_team->field_image) : $team_logo;
 						                        ?>
 				                            </div>
 				                            <div class="r-content">
@@ -64,9 +64,9 @@ $standings = footmali_get_standings('2015-2016');
 				                        </a>
 				                        <a class="r-side right" href="/<?php echo drupal_get_path_alias('node/' . $away_team->nid); ?>">
 				                            <div class="r-thumb">
-				                                <?php 
-						                            echo count($away_team->field_image) > 0 ? 
-						                                footmali_output_image('fixture_result_team_logo', $away_team->field_image) : $team_logo; 
+				                                <?php
+						                            echo count($away_team->field_image) > 0 ?
+						                                footmali_output_image('fixture_result_team_logo', $away_team->field_image) : $team_logo;
 						                        ?>
 				                            </div>
 				                            <div class="r-content">
@@ -83,16 +83,16 @@ $standings = footmali_get_standings('2015-2016');
 			            <!-- owl-carousel-2 -->
 			        </div>
 			    </div>
-			    <!-- widget --> 
+			    <!-- widget -->
 				<?php endif; ?>
 
-				<?php if($fixtures  && $fixtures->rowCount() > 0): ?>
+				<?php if($fixtures  && count($fixtures) > 0): ?>
 			    <div class="widget kopa-fixture-widget">
 			        <h3 class="widget-title style6"><?php echo t('Upcoming Games'); ?></h3>
 			        <div class="widget-content">
 			            <div class="owl-carousel owl-carousel-2">
 			            	<?php foreach ($fixtures as $fixture): ?>
-			            		<?php 
+			            		<?php
 			            			$home_team = node_load($fixture->hometeam);
 			            			$away_team = node_load($fixture->awayteam);
 
@@ -114,9 +114,9 @@ $standings = footmali_get_standings('2015-2016');
 				                        </a>
 				                        <a class="r-side left" href="/<?php echo drupal_get_path_alias('node/' . $home_team->nid); ?>">
 				                            <div class="r-thumb">
-				                                <?php 
-						                            echo count($home_team->field_image) > 0 ? 
-						                                footmali_output_image('fixture_result_team_logo', $home_team->field_image) : $team_logo; 
+				                                <?php
+						                            echo count($home_team->field_image) > 0 ?
+						                                footmali_output_image('fixture_result_team_logo', $home_team->field_image) : $team_logo;
 						                        ?>
 				                            </div>
 				                            <div class="r-content">
@@ -125,9 +125,9 @@ $standings = footmali_get_standings('2015-2016');
 				                        </a>
 				                        <a class="r-side right" href="/<?php echo drupal_get_path_alias('node/' . $away_team->nid); ?>">
 				                            <div class="r-thumb">
-				                                <?php 
-						                            echo count($away_team->field_image) > 0 ? 
-						                                footmali_output_image('fixture_result_team_logo', $away_team->field_image) : $team_logo; 
+				                                <?php
+						                            echo count($away_team->field_image) > 0 ?
+						                                footmali_output_image('fixture_result_team_logo', $away_team->field_image) : $team_logo;
 						                        ?>
 				                            </div>
 				                            <div class="r-content">
@@ -148,7 +148,7 @@ $standings = footmali_get_standings('2015-2016');
 			</div>
 			<!-- widget-area-12 -->
 
-			<?php if($standings->rowCount() > 0): ?>
+			<?php if($standings && count($standings) > 0): ?>
 				<div class="widget-area-13">
 				    <div class="widget kopa-charts-widget">
 				        <h3 class="widget-title style7"><span><?php echo t('standings table'); ?></span></h3>
@@ -160,23 +160,24 @@ $standings = footmali_get_standings('2015-2016');
 				                <div class="t-col"><?php echo t('pts'); ?></div>
 				            </header>
 				            <ul class="clearfix">
-				            	<?php foreach ($standings as $index => $row): ?>
+				            	<?php $index = 1; 
+                        foreach ($standings as $points => $row): ?>
 				            		<?php
 				            			$team = node_load($row->team);
 				            			$team_short_name = !empty($team->field_short_name) ? $team->field_short_name[LANGUAGE_NONE][0]['value'] : $team->title;
 				            		?>
 				                <li>
-				                    <div class="t-col"><?php echo $index + 1; ?></div>
+				                    <div class="t-col"><?php echo $index; ?></div>
 				                    <div class="t-col width1"><?php echo strlen($team->title) < 15 ? $team->title : $team_short_name; ?></div>
 				                    <div class="t-col"><?php echo $row->played; ?></div>
 				                    <div class="t-col"><?php echo $row->points; ?></div>
 				                </li>
-				            	<?php endforeach; ?>
+				            	<?php $index++; endforeach; ?>
 				            </ul>
 				            <!-- <a class="kopa-view-all" href="">View all<span class="fa fa-chevron-right"></span></a> -->
 				        </div>
 				    </div>
-				    <!-- widget --> 
+				    <!-- widget -->
 				</div>
 				<!-- widget-area-13 -->
 			<?php endif; ?>
