@@ -289,8 +289,8 @@ function footmali_mobile_articles(){
     $articles_query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'article')
         ->propertyCondition('status', NODE_PUBLISHED)
-        ->range(0, 8)
-        ->propertyOrderBy('created', 'DESC');
+        ->propertyOrderBy('created', 'DESC')
+        ->pager(15);
 
     $articles = array();
 

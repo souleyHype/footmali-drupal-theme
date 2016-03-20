@@ -17,7 +17,7 @@ $top_articles = footmali_top_articles();
                             <div class="content-top">
                                 <h4 class="entry-title"><a href="<?php echo drupal_get_path_alias("node/{$top_article->nid}"); ?>"><?php echo $top_article->title; ?></a></h4>
                             </div>
-                            <?php echo footmali_trim_paragraph($top_article->body[LANGUAGE_NONE][0]['value'],  140); ?>
+                            <?php echo footmali_trim_paragraph($top_article->body[LANGUAGE_NONE][0]['value'],  140) . '...'; ?>
                             <footer>
                                 <!-- todo: link arthur's other articles -->
                                 <p class="entry-author"><?php echo t('by'); ?> <?php echo footmali_get_article_author($top_article); ?></p>

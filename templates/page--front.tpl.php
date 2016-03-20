@@ -107,12 +107,12 @@
                         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
                         <?php if(footmali_ismobile()): ?>
                             <?php include('includes/partials/_mobile_top_stories.php'); ?>
-                        <?php else: ?>
+                        <?php elseif(!footmali_ismobile()): ?>
                             <?php include('includes/partials/_top_stories.php'); ?>
+                            <?php include('includes/partials/_ad_content_wide.php'); ?>
+                            <?php include('includes/partials/_video_carrousel.php'); ?>
                         <?php endif; ?>
 
-                        <?php include('includes/partials/_ad_content_wide.php'); ?>
-                        <?php include('includes/partials/_video_carrousel.php'); ?>
                     </div>
                     <!-- main-col -->
                     <?php if(!footmali_ismobile()): ?>
@@ -122,7 +122,9 @@
                 <!-- row -->
             </div>
             <!-- content-wrap-->
-            <?php include('includes/partials/_homepage_fixtures_standing.php'); ?>
+            <?php if(!footmali_ismobile()): ?>
+                <?php include('includes/partials/_homepage_fixtures_standing.php'); ?>
+            <?php endif; ?>
         </div>
         <!-- wrapper -->
 
