@@ -697,6 +697,7 @@ function footmali_render_share_small($nid, $title){
  *
  *****************************/
 function footmali_trim_paragraph($string, $your_desired_width) {
+    $string = strip_tags($string);
     $parts = preg_split('/([\s\n\r]+)/', $string, null, PREG_SPLIT_DELIM_CAPTURE);
     $parts_count = count($parts);
 
