@@ -20,7 +20,7 @@ $top_articles = footmali_top_articles();
                             <?php echo footmali_trim_paragraph($top_article->body[LANGUAGE_NONE][0]['value'],  140); ?>
                             <footer>
                                 <!-- todo: link arthur's other articles -->
-                                <p class="entry-author"><?php echo t('by'); ?> <?php echo $top_article->name; ?></p>
+                                <p class="entry-author"><?php echo t('by'); ?> <?php echo footmali_get_article_author($top_article); ?></p>
                             </footer>
                         </div>
                         <?php echo footmali_render_share_small($top_article->nid, $top_article->title); ?>

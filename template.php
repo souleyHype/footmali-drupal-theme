@@ -691,6 +691,24 @@ function footmali_render_share_small($nid, $title){
     return $output;
 }
 
+function footmali_get_article_published_date($node){
+  $published_on  = 'Le ' . date('d/m/Y', $node->created);
+  $published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y', $node->changed) : '';
+
+  return $published_on;
+}
+
+function footmali_get_article_author($node){
+  $author_data = user_load($node->uid);
+  $author = $node->name;
+  if(isset($author_data->field_first_name) && isset($author_data->field_last_name)){
+      $author = field_get_items('user', $author_data, 'field_first_name')[0]['value'] . ' ';
+      $author .= field_get_items('user', $author_data, 'field_last_name')[0]['value'];
+  }
+
+  return $author;
+}
+
 /*****************************
  *
  * FOOTMALI Helper FUNCTIONS

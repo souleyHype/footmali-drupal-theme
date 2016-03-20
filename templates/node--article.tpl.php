@@ -83,7 +83,6 @@
 <?php
 global $language;
 
-
 $tags = array();
 if($page){
 
@@ -105,16 +104,6 @@ if($page){
 
 }
 
-$author_data = user_load($node->uid);
-$author = $node->name;
-if(isset($author_data->field_first_name) && isset($author_data->field_last_name)){
-    $author = $author_data->field_first_name[LANGUAGE_NONE][0]['value'] . ' ';
-    $author .= $author_data->field_last_name[LANGUAGE_NONE][0]['value'];
-}
-
-$published_on  = 'Le ' . date('d/m/Y', $node->created);
-$published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date('d/m/Y', $node->changed) : '';
-
 ?>
 <?php if($page): ?>
     <div class="kopa-entry-post">
@@ -128,8 +117,8 @@ $published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date(
 
             <h4 class="entry-title"><?php print $title; ?></h4>
             <div class="entry-meta">
-                <span class="entry-author"><?php echo t('by'); ?> <?php echo $author; ?></a></span>
-                <span class="entry-date"><?php echo $published_on; ?></span>
+                <span class="entry-author"><?php echo t('by'); ?> <?php echo footmali_get_article_author($node); ?></a></span>
+                <span class="entry-date"><?php echo footmali_get_article_published_date($node); ?></span>
             </div>
             <div class="entry-thumb">
                 <?php print render($content['field_image']); ?>
@@ -219,7 +208,7 @@ $published_on .= $node->created != $node->changed ? ' | Mis à jour le ' . date(
             <?php echo footmali_trim_paragraph($body[0]['value'], 140) . '...'; ?>
             <footer>
                 <!-- todo: link arthur's other articles -->
-                <p class="entry-author"><?php echo t('by'); ?> <?php echo $author; ?></p>
+                <p class="entry-author"><?php echo t('by'); ?> <?php echo footmali_get_article_author($node); ?></p>
             </footer>
         </div>
         <?php echo footmali_render_share_small($nid, $title); ?>
