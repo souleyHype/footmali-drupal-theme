@@ -103,12 +103,12 @@ if(count($field_image) > 0){
 <div class="team-header mb-30">
     <div class="kopa-tab team-tab style6">
         <ul class="nav nav-tabs">
-            <?php if($squad): ?>
+            <?php if($squad && count($squad) > 0): ?>
             <li class="active">
                 <a href="#squad" data-toggle="tab"><span><?php echo t('Effectif') ?></span></a>
             </li>
             <?php endif; ?>
-            <?php if($articles): ?>
+            <?php if($articles && count($articles) > 0): ?>
             <li>
                 <a href="#articles" data-toggle="tab"><span>Articles</span></a>
             </li>
@@ -119,7 +119,7 @@ if(count($field_image) > 0){
 </div>
 
 <div class="tab-content ft-tab-content mb-30">
-<?php if($squad): ?>
+<?php if($squad && count($squad) > 0): ?>
     <div class="tab-pane active" id="squad">
     <?php foreach($squad as $position => $players): ?>
         <div class="widget kopa-team-club-widget">
@@ -132,14 +132,14 @@ if(count($field_image) > 0){
                                 <div class="entry-thumb">
                                     <a href="/<?php echo drupal_get_path_alias('node/' . $player->nid); ?>">
                                     <?php if(!is_null($player->image)): ?>
-                                        <?php 
+                                        <?php
                                         echo theme_image_style(array(
                                             'style_name' => 'squad_player',
                                             'path' => $player->image,
                                             'width' => '',
                                             'height' => '',
                                         ));
-                                        ?> 
+                                        ?>
                                     <?php else: ?>
                                         <img src="/<?php echo $theme_path ?>/images/default_player_profile_small.png" width="190px" height="146px">
                                     <?php endif; ?>

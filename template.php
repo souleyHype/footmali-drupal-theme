@@ -232,6 +232,7 @@ function footmali_featured_articles(){
     $articles_query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'article')
         ->propertyCondition('status', NODE_PUBLISHED)
+        ->fieldCondition('field_featured', 'value', '1', '=')
         ->range(0, 5)
         ->propertyOrderBy('created', 'DESC');
 
@@ -246,12 +247,38 @@ function footmali_featured_articles(){
     return $articles;
 }
 
+/* SELECT DISTINCT n.nid, n.title, c.totalcount
+            FROM {node} n left join {node_counter} c on n.nid = c.nid
+            WHERE n.status = 1 and n.moderate = 0 and n.created >= %d
+              AND c.totalcount >= 1 and title not like '%page not found%'
+            ORDER BY c.totalcount desc, n.created desc
+*/
 function footmali_top_articles(){
+    $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
+    $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
+    $articles_query .= "WHERE n.status = 1 ";
+    $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= n.created ";
+    $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
+    $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
+    $articles_query .= "LIMIT 6 ";
+
+    $articles = array();
+    $articles_result = db_query($articles_query)->fetchAllAssoc('nid');
+    if( !empty($articles_result) && is_array($articles_result) ){
+        $articles_ids = array_keys($articles_result);
+        $articles = node_load_multiple($articles_ids);
+    }
+
+    return $articles;
+}
+
+function footmali_headline_articles(){
     $articles_query = new EntityFieldQuery();
     $articles_query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'article')
         ->propertyCondition('status', NODE_PUBLISHED)
-        ->range(5, 3)
+        ->fieldCondition('field_featured', 'value', '0', '=')
+        ->range(0, 10)
         ->propertyOrderBy('created', 'DESC');
 
     $articles = array();
@@ -265,19 +292,19 @@ function footmali_top_articles(){
     return $articles;
 }
 
-function footmali_headline_articles(){
-    $articles_query = new EntityFieldQuery();
-    $articles_query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'article')
-        ->propertyCondition('status', NODE_PUBLISHED)
-        ->range(8, 7)
-        ->propertyOrderBy('created', 'DESC');
+function footmali_popular_articles(){
+    $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
+    $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
+    $articles_query .= "WHERE n.status = 1 ";
+    $articles_query .= "AND n.type = 'article' ";
+    $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
+    $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
+    $articles_query .= "LIMIT 10 ";
 
     $articles = array();
-
-    $articles_result = $articles_query->execute();
+    $articles_result = db_query($articles_query)->fetchAllAssoc('nid');
     if( !empty($articles_result) && is_array($articles_result) ){
-        $articles_ids = array_keys($articles_result['node']);
+        $articles_ids = array_keys($articles_result);
         $articles = node_load_multiple($articles_ids);
     }
 
@@ -425,6 +452,14 @@ function footmali_get_videos($limit=5){
 }
 
 function footmali_get_team_squad($nid){
+  $cid = 'footmali_get_team_squad:'.$nid;
+  $bin = 'cache';
+
+  if ($cached = cache_get($cid, $bin)) {
+      $squad = $cached->data;
+
+      return $squad;
+  }else {
     $query  = "SELECT nid, node.title name, squad.player_number number, tax.name position, fm.uri image ";
     $query .= "FROM ( ";
     $query .=    "SELECT title, splayer.field_squad_player_nid player_nid, spnumber.field_squad_player_number_value player_number ";
@@ -443,10 +478,8 @@ function footmali_get_team_squad($nid){
     $query .= "LEFT JOIN file_managed as fm ON fimg.field_image_fid = fm.fid ";
     $query .= "WHERE node.type = 'player' ";
 
-    $query_result = db_query($query, array(':team_id' => $nid));
-
+    $query_result = db_query($query, array(':team_id' => $nid))->fetchAll();
     $squad = array('Gardien' => array(), 'Défenseur' => array(), 'Milieu' => array(), 'Attaquant' => array());
-
     foreach($query_result as $player){
         switch($player->position){
             case 'Gardien':
@@ -463,8 +496,9 @@ function footmali_get_team_squad($nid){
                 break;
         }
     }
-
+    cache_set($cid, $squad, $bin);
     return $squad;
+  }
 }
 
 function footmali_get_entity_articles($nid){
@@ -555,7 +589,7 @@ function footmali_get_matches($season, $type){
         $query  = "SELECT n.nid, s.field_season_value as season, mstatus.field_match_played_value as matchstatus, ";
         $query .= "DATE_FORMAT(mdate.field_date_time_value, '%d/%m/%y %Hh%i') as date, hteam.field_home_team_nid as hometeam, ";
         $query .= "hscore.field_home_team_score_value as goalsfor, ascore.field_away_team_score_value as goalsagainst, ";
-        $query .= "ateam.field_away_team_nid as awayteam, taxonomy_term_data.name as round ";
+        $query .= "ateam.field_away_team_nid as awayteam, tcompetition.name as competition, tround.name as round ";
         $query .= "FROM node as n ";
         $query .= "JOIN field_data_field_season as s ON n.nid = s.entity_id ";
         $query .= "JOIN field_data_field_home_team as hteam ON n.nid = hteam.entity_id ";
@@ -564,15 +598,22 @@ function footmali_get_matches($season, $type){
         $query .= "JOIN field_data_field_away_team_score as ascore ON n.nid = ascore.entity_id ";
         $query .= "JOIN field_data_field_date_time as mdate On n.nid = mdate.entity_id ";
         $query .= "JOIN field_data_field_match_played as mstatus ON n.nid = mstatus.entity_id ";
+
+        $query .= "JOIN field_data_field_competition as mcompetition ON n.nid = mcompetition.entity_id ";
+        $query .= "JOIN taxonomy_term_data as tcompetition ON mcompetition.field_competition_target_id = tcompetition.tid ";
+        $query .= "JOIN field_data_field_country as country ON tcompetition.tid = country.entity_id ";
+
         $query .= "JOIN field_data_field_competition_round as mround ON n.nid = mround.entity_id ";
-        $query .= "JOIN taxonomy_term_data ON mround.field_competition_round_target_id = taxonomy_term_data.tid ";
+        $query .= "JOIN taxonomy_term_data as tround ON mround.field_competition_round_target_id = tround.tid ";
         $query .= "WHERE n.type = 'fixture' ";
+        $query .= "AND country.field_country_value = 'Mali' ";
+        $query .= "AND tcompetition.name = 'League 1' ";
         $query .= "AND s.field_season_value = :season ";
         $query .= "AND mstatus.field_match_played_value = :type ";
         if($type === 1){ //result
-          $query .= "ORDER BY taxonomy_term_data.name DESC, mdate.field_date_time_value DESC ";
+          $query .= "ORDER BY tround.name DESC, mdate.field_date_time_value DESC ";
         }else { //fixture
-          $query .= "ORDER BY taxonomy_term_data.name ASC, mdate.field_date_time_value DESC ";
+          $query .= "ORDER BY tround.name ASC, mdate.field_date_time_value DESC ";
         }
         $query .= "LIMIT 10";
         $query_result = db_query($query, array(':season' => $season, ':type' => $type))->fetchAllAssoc('nid');
@@ -603,7 +644,14 @@ function footmali_get_standings($season, $limit=30){
     $fixture_query .= "JOIN field_data_field_away_team as ateam ON n.nid = ateam.entity_id ";
     $fixture_query .= "JOIN field_data_field_away_team_score as ascore ON n.nid = ascore.entity_id ";
     $fixture_query .= "JOIN field_data_field_match_played as mstatus ON n.nid = mstatus.entity_id ";
+
+    $fixture_query .= "JOIN field_data_field_competition as mcompetition ON n.nid = mcompetition.entity_id ";
+    $fixture_query .= "JOIN taxonomy_term_data as tcompetition ON mcompetition.field_competition_target_id = tcompetition.tid ";
+    $fixture_query .= "JOIN field_data_field_country as country ON tcompetition.tid = country.entity_id ";
+
     $fixture_query .= "WHERE n.type = 'fixture' ";
+    $fixture_query .= "AND country.field_country_value = 'Mali' ";
+    $fixture_query .= "AND tcompetition.name = 'League 1' ";
     $fixture_query .= "AND mstatus.field_match_played_value = 1 ";
     $fixture_query .= "AND s.field_season_value = :season ";
 
@@ -732,4 +780,14 @@ function footmali_trim_paragraph($string, $your_desired_width) {
 function footmali_ismobile(){
     $detect = new Mobile_Detect;
     return ($detect->isMobile() && !$detect->isTablet());
+}
+
+function footmali_squad_position_sort($a, $b){
+    $positions = array(
+      'gardien' => 0,
+      'défenseur' => 1,
+      'milieu' => 2,
+      'attaquant' => 3
+    );
+    return $positions[strtolower($a->position)] - $positions[strtolower($b->position)];
 }

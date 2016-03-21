@@ -67,6 +67,15 @@
 /**
 * Homepage
 */
+#main-content {
+  padding: 20px 0 0 0;
+}
+
+#main-content.custom {
+    padding: 20px 0 0 0;
+    background: #efefef;
+}
+
 .sync1 .entry-item .entry-content, .sync5 .entry-item .entry-content {
     bottom: 0;
 }
@@ -162,6 +171,11 @@
 /**
 * main menu override
 */
+.kopa-header-middle,
+.kopa-header-middle.fixed {
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.25);
+}
+
 .main-menu, .main-menu-2 {
     position: relative;
     border: none;

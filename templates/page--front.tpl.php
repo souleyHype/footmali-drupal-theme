@@ -77,13 +77,14 @@
 
 <?php include('includes/header.php'); ?>
 
-    <div id="main-content" class="style1">
+    <div id="main-content" class="custom">
 
     <?php if(!footmali_ismobile()): ?>
         <div class="wrapper mb-30">
 
             <div class="widget-area-1">
-                <?php include('includes/partials/_homepage_featured_carrousel.php'); ?>
+                <?php include('includes/partials/_homepage_featured_carrousel_small.php'); ?>
+                <?php include('includes/partials/_homepage_top_stories_small.php'); ?>
             </div>
             <!-- widget-area-1 -->
 
@@ -108,7 +109,7 @@
                         <?php if(footmali_ismobile()): ?>
                             <?php include('includes/partials/_mobile_top_stories.php'); ?>
                         <?php elseif(!footmali_ismobile()): ?>
-                            <?php include('includes/partials/_top_stories.php'); ?>
+                            <?php include('includes/partials/_homepage_headlines.php'); ?>
                             <?php include('includes/partials/_ad_content_wide.php'); ?>
                             <?php include('includes/partials/_video_carrousel.php'); ?>
                         <?php endif; ?>
