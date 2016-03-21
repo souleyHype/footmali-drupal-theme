@@ -277,23 +277,32 @@ function footmali_top_articles(){
 }
 
 function footmali_headline_articles(){
-    $articles_query = new EntityFieldQuery();
-    $articles_query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'article')
-        ->propertyCondition('status', NODE_PUBLISHED)
-        ->fieldCondition('field_featured', 'value', array('0','NULL'), 'IN')
-        ->range(0, 10)
-        ->propertyOrderBy('created', 'DESC');
+  $cid = 'footmali_headline_articles';
+  $bin = 'cache';
+
+  if ($cached = cache_get($cid, $bin)) {
+      $query_result = $cached->data;
+
+      return $query_result;
+  }else {
+    $articles_query  = "SELECT DISTINCT n.nid, n.title ";
+    $articles_query .= "FROM node n left join field_data_field_featured f on n.nid = f.entity_id ";
+    $articles_query .= "WHERE n.status = 1 ";
+    $articles_query .= "AND n.type = 'article' ";
+    $articles_query .= "AND f.field_featured_value != 1 ";
+    $articles_query .= "ORDER BY n.created DESC ";
+    $articles_query .= "LIMIT 10 ";
 
     $articles = array();
-
-    $articles_result = $articles_query->execute();
+    $articles_result = db_query($articles_query)->fetchAllAssoc('nid');
     if( !empty($articles_result) && is_array($articles_result) ){
-        $articles_ids = array_keys($articles_result['node']);
+        $articles_ids = array_keys($articles_result);
         $articles = node_load_multiple($articles_ids);
     }
 
+    cache_set($cid, $articles, $bin);
     return $articles;
+  }
 }
 
 function footmali_popular_articles(){
@@ -309,7 +318,7 @@ function footmali_popular_articles(){
     $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
     $articles_query .= "WHERE n.status = 1 ";
     $articles_query .= "AND n.type = 'article' ";
-    $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
+    $articles_query .= "AND c.totalcount >= 1 ";
     $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
     $articles_query .= "LIMIT 10 ";
 
