@@ -3,7 +3,7 @@ $headlines = footmali_headline_articles();
 ?>
 <?php if(count($headlines) > 0): ?>
     <div class="widget kopa-article-list-widget article-list-1">
-        <h3 class="widget-title style12"><?php echo t('Top Stories'); ?><span class="ttg"></span></h3>
+        <h3 class="widget-title style12"><?php echo t('Headlines'); ?><span class="ttg"></span></h3>
         <ul class="clearfix">
             <?php foreach($headlines as $article): ?>
                 <li>

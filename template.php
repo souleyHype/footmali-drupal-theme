@@ -289,7 +289,7 @@ function footmali_headline_articles(){
     $articles_query .= "FROM node n left join field_data_field_featured f on n.nid = f.entity_id ";
     $articles_query .= "WHERE n.status = 1 ";
     $articles_query .= "AND n.type = 'article' ";
-    $articles_query .= "AND f.field_featured_value != 1 ";
+    $articles_query .= "AND f.field_featured_value IS NULL OR f.field_featured_value = 0 ";
     $articles_query .= "ORDER BY n.created DESC ";
     $articles_query .= "LIMIT 10 ";
 
