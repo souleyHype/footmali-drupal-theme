@@ -76,6 +76,10 @@
     background: #efefef;
 }
 
+.sidebar .article-list-6 .widget-content {
+  padding: 1em;
+}
+
 .sync1 .entry-item .entry-content, .sync5 .entry-item .entry-content {
     bottom: 0;
 }
