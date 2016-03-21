@@ -247,13 +247,15 @@ function footmali_featured_articles(){
     return $articles;
 }
 
-/* SELECT DISTINCT n.nid, n.title, c.totalcount
-            FROM {node} n left join {node_counter} c on n.nid = c.nid
-            WHERE n.status = 1 and n.moderate = 0 and n.created >= %d
-              AND c.totalcount >= 1 and title not like '%page not found%'
-            ORDER BY c.totalcount desc, n.created desc
-*/
 function footmali_top_articles(){
+  $cid = 'footmali_top_articles';
+  $bin = 'cache';
+
+  if ($cached = cache_get($cid, $bin)) {
+      $query_result = $cached->data;
+
+      return $query_result;
+  }else {
     $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
     $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
     $articles_query .= "WHERE n.status = 1 ";
@@ -269,7 +271,9 @@ function footmali_top_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
+    cache_set($cid, $articles, $bin);
     return $articles;
+  }
 }
 
 function footmali_headline_articles(){
@@ -293,6 +297,14 @@ function footmali_headline_articles(){
 }
 
 function footmali_popular_articles(){
+  $cid = 'footmali_popular_articles';
+  $bin = 'cache';
+
+  if ($cached = cache_get($cid, $bin)) {
+      $query_result = $cached->data;
+
+      return $query_result;
+  }else {
     $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
     $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
     $articles_query .= "WHERE n.status = 1 ";
@@ -308,7 +320,9 @@ function footmali_popular_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
+    cache_set($cid, $articles, $bin);
     return $articles;
+  }
 }
 
 function footmali_mobile_articles(){
