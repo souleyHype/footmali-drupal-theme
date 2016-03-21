@@ -124,7 +124,7 @@
             </div>
             <!-- content-wrap-->
             <?php if(!footmali_ismobile()): ?>
-                <?php include('includes/partials/_homepage_fixtures_standing.php'); ?>
+                <?php //include('includes/partials/_homepage_fixtures_standing.php'); ?>
             <?php endif; ?>
         </div>
         <!-- wrapper -->
