@@ -281,7 +281,7 @@ function footmali_headline_articles(){
     $articles_query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'article')
         ->propertyCondition('status', NODE_PUBLISHED)
-        ->fieldCondition('field_featured', 'value', '0', '=')
+        ->fieldCondition('field_featured', 'value', array('0','NULL'), 'IN')
         ->range(0, 10)
         ->propertyOrderBy('created', 'DESC');
 
