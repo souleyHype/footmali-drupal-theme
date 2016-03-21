@@ -105,6 +105,7 @@ global $theme_path;
 
 
                 <?php print render($page['content']); ?>
+                <?php include('includes/partials/_ad_content_wide.php'); ?>
 
             </div>
             <!-- main-col -->

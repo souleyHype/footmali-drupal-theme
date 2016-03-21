@@ -10,7 +10,7 @@ global $user;
         <div class="wrapper">
 
             <div class="header-top-left">
-                
+
                 <div class="kopa-user">
                     <ul class="clearfix">
                     <?php if(!$user->uid): ?>
@@ -111,30 +111,6 @@ global $user;
 
     </div>
     <!-- kopa-header-middle -->
-
-    <div class="kopa-header-bottom">
-
-        <div class="wrapper">
-
-            <nav class="kopa-main-nav-2">
-                <ul class="main-menu-2 sf-menu">
-                    <li>&nbsp;</li>
-                </ul>
-            </nav>
-            <!--/end main-nav-2-->
-
-<!--            <nav class="main-nav-mobile style2 clearfix">-->
-<!--                <a class="pull">categories<i class="fa fa-angle-down"></i></a>-->
-<!--                <ul class="main-menu-mobile">-->
-<!--                </ul>-->
-<!--            </nav>-->
-            <!--/main-menu-mobile-2-->
-
-        </div>
-        <!-- wrapper -->
-
-    </div>
-    <!-- kopa-header-bottom -->
 
 </header>
 <!-- kopa-page-header -->

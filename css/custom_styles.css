@@ -67,18 +67,124 @@
 /**
 * Homepage
 */
+#main-content {
+  padding: 20px 0 0 0;
+}
+
+#main-content.custom {
+    padding: 20px 0 0 0;
+    background: #efefef;
+}
+
+.sidebar .article-list-6 .widget-content {
+  padding: 1em;
+}
+
 .sync1 .entry-item .entry-content, .sync5 .entry-item .entry-content {
     bottom: 0;
+}
+
+.mobile-view .main-nav-mobile .pull {
+  margin: 16px 0 5px;
+  background: transparent;
+}
+
+.mobile-view .kopa-header-middle.fixed .main-nav-mobile .pull {
+  margin: 6px 0 5px;
+}
+
+.mobile-view #main-content .wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.mobile-view .kopa-article-list-widget li {
+  padding: 0;
+  margin-bottom: 2em;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.mobile-view .kopa-article-list-widget .entry-content {
+  padding: 1em 1em 2em;
+}
+
+.mobile-view .article-list-1 .post-share-link {
+    bottom: 2em;
+    right: 2em;
+}
+
+.mobile-view .entry-item .post-share-link ul {
+  left: -20px;
+  top: 30px;
+}
+
+.mobile-view .content-top .entry-title {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.mobile-view .kopa-breadcrumb {
+  display: none;
+}
+
+.mobile-view .kopa-breadcrumb,
+.mobile-view .kopa-tag-box,
+.mobile-view .single-other-post,
+.mobile-view .kopa-share-post,
+.mobile-view.not-front article .entry-categories,
+.mobile-view.not-front article .entry-title,
+.mobile-view.not-front article .entry-meta,
+.mobile-view.not-front article .short-des,
+.mobile-view.not-front article .field-name-body {
+  padding: 0 20px;
+}
+
+.mobile-view.not-front article .field-name-body p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.mobile-view #mobile-pager {
+  width: 100%;
+  padding: 0 1em;
+}
+
+.mobile-view #mobile-pager .pager-button {
+  border-color: #1C9E49;
+  padding: 0;
+  border-radius: 0;
+}
+
+.mobile-view #mobile-pager.two-button .pager-button {
+  width: 50%;
+}
+
+.mobile-view #mobile-pager.one-button .pager-button {
+  width: 100%;
+}
+
+.mobile-view #mobile-pager .pager-button a {
+  color: #1C9E49;
+  display: block;
+  padding: 5px;
+  font-size: 24px;
+  font-weight: 900;
 }
 
 /**
 * main menu override
 */
+.kopa-header-middle,
+.kopa-header-middle.fixed {
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.25);
+}
+
 .main-menu, .main-menu-2 {
     position: relative;
     border: none;
     margin: 0;
-    margin-left: 46.5%%;
+    margin-left: 46.5%;
     width: 70%;
 }
 

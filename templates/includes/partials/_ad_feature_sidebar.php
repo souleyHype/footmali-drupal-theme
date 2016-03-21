@@ -3,7 +3,7 @@
 <?php if (module_exists('adsense')) {
   print adsense_display(array(
     'format' => 'responsive',
-    'slot' => '2749418716'
+    'slot' => '2967914719'
   ));
 } ?>
 </div>
