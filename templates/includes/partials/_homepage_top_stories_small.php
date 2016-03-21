@@ -32,7 +32,7 @@ $top_articles = footmali_top_articles();
             <!-- item-list-entry -->
             <ul class="clearfix item-list-video">
               <?php foreach($top_articles as $top_article): ?>
-                <?php if($top_article->type == 'article'): ?>
+                <?php if($top_article->type == 'video'): ?>
                   <li>
                       <a href="<?php echo drupal_get_path_alias("node/{$top_article->nid}"); ?>">
                         <?php echo $top_article->title; ?> <span class="fa fa-play-circle-o"></span>
