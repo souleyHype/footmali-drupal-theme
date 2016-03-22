@@ -2,8 +2,8 @@
 <!-- Sidebar -->
 <?php if (module_exists('adsense')) {
   print adsense_display(array(
-    'format' => 'responsive',
-    'slot' => '2967914719'
+    'format' => '300x250',
+    'slot' => '7248180310'
   ));
 } ?>
 </div>

@@ -259,7 +259,7 @@ function footmali_top_articles(){
     $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
     $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
     $articles_query .= "WHERE n.status = 1 ";
-    $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= n.created ";
+    $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= DATE_FORMAT(FROM_UNIXTIME(n.created), '%Y-%c-%d') ";
     $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
     $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
     $articles_query .= "LIMIT 4 ";
@@ -271,7 +271,7 @@ function footmali_top_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
-    cache_set($cid, $articles, $bin);
+    cache_set($cid, $articles, $bin, CACHE_TEMPORARY);
     return $articles;
   }
 }
@@ -300,7 +300,7 @@ function footmali_headline_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
-    cache_set($cid, $articles, $bin);
+    cache_set($cid, $articles, $bin, CACHE_TEMPORARY);
     return $articles;
   }
 }
@@ -641,7 +641,8 @@ function footmali_get_matches($season, $type){
         $query .= "LIMIT 10";
         $query_result = db_query($query, array(':season' => $season, ':type' => $type))->fetchAllAssoc('nid');
 
-        cache_set($cid, $query_result, $bin);
+        $expire = strtotime("+4 days", time());
+        cache_set($cid, $query_result, $bin, $expire);
         return $query_result;
     }
 }
@@ -705,7 +706,8 @@ function footmali_get_standings($season, $limit=30){
 
     $query_result = db_query($query, array(':season' => $season))->fetchAllAssoc('points');
 
-    cache_set($cid, $query_result, $bin);
+    $expire = strtotime("+4 days", time());
+    cache_set($cid, $query_result, $bin, $expire);
     return $query_result;
   }
 }
