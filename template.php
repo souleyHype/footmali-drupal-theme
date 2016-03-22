@@ -259,7 +259,7 @@ function footmali_top_articles(){
     $articles_query  = "SELECT DISTINCT n.nid, n.title, c.totalcount ";
     $articles_query .= "FROM node n left join node_counter c on n.nid = c.nid ";
     $articles_query .= "WHERE n.status = 1 ";
-    $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= n.created ";
+    $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= DATE_FORMAT(FROM_UNIXTIME(n.created), '%Y-%c-%d') ";
     $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
     $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
     $articles_query .= "LIMIT 4 ";
