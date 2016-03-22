@@ -271,7 +271,7 @@ function footmali_top_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
-    cache_set($cid, $articles, $bin);
+    cache_set($cid, $articles, $bin, CACHE_TEMPORARY);
     return $articles;
   }
 }
@@ -300,7 +300,7 @@ function footmali_headline_articles(){
         $articles = node_load_multiple($articles_ids);
     }
 
-    cache_set($cid, $articles, $bin);
+    cache_set($cid, $articles, $bin, CACHE_TEMPORARY);
     return $articles;
   }
 }
@@ -641,7 +641,8 @@ function footmali_get_matches($season, $type){
         $query .= "LIMIT 10";
         $query_result = db_query($query, array(':season' => $season, ':type' => $type))->fetchAllAssoc('nid');
 
-        cache_set($cid, $query_result, $bin);
+        $expire = strtotime("+4 days", time());
+        cache_set($cid, $query_result, $bin, $expire);
         return $query_result;
     }
 }
@@ -705,7 +706,8 @@ function footmali_get_standings($season, $limit=30){
 
     $query_result = db_query($query, array(':season' => $season))->fetchAllAssoc('points');
 
-    cache_set($cid, $query_result, $bin);
+    $expire = strtotime("+4 days", time());
+    cache_set($cid, $query_result, $bin, $expire);
     return $query_result;
   }
 }
