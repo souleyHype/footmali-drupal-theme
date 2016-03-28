@@ -262,7 +262,7 @@ function footmali_top_articles(){
     $articles_query .= "AND DATE_SUB(CURDATE(),INTERVAL 15 DAY) <= DATE_FORMAT(FROM_UNIXTIME(n.created), '%Y-%c-%d') ";
     $articles_query .= "AND c.totalcount >= 1 and title not like '%page not found%' ";
     $articles_query .= "ORDER BY c.totalcount desc, n.created desc ";
-    $articles_query .= "LIMIT 4 ";
+    $articles_query .= "LIMIT 3 ";
 
     $articles = array();
     $articles_result = db_query($articles_query)->fetchAllAssoc('nid');

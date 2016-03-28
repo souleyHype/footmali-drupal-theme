@@ -144,8 +144,6 @@ if($page){
         </div>
         <!-- kopa-tag-box -->
     <?php endif; ?>
-
-    <?php echo footmali_render_share_normal($nid, $title); ?>
     <!-- kopa-share-post -->
 
     <?php
@@ -189,6 +187,7 @@ if($page){
     <?php endif; ?>
 
     <div id="comments">
+      <h4><?php echo t('Reagissez A Cet Article'); ?></h4>
         <div class="fb-comments" data-href="<?php drupal_get_path_alias("node/{$nid}"); ?>" data-width="100%" data-numposts="10"></div>
     </div>
     <!-- comment -->

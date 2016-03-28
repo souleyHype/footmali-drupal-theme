@@ -12,7 +12,7 @@ $pager_next = theme('pager_next', array(
 ));
 
 $pager_class = $pager_previous && $pager_next ? 'two-button' : 'one-button';
-
+$index = 1;
 ?>
 <?php if(count($top_articles) > 0): ?>
     <div class="widget kopa-article-list-widget article-list-1">
@@ -38,7 +38,22 @@ $pager_class = $pager_previous && $pager_next ? 'two-button' : 'one-button';
                         <?php echo footmali_render_share_small($top_article->nid, $top_article->title); ?>
                     </article>
                 </li>
-            <?php endforeach; ?>
+                <?php if($index == 4): ?>
+                  <!-- headlines ad -->
+                  <li class="headlines responsive-ad">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Between Headlines -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-7538390076513661"
+                         data-ad-slot="6917959512"
+                         data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                  </li>
+                <?php endif; ?>
+            <?php $index++; endforeach; ?>
         </ul>
         <div id="mobile-pager" class="btn-group <?php echo $pager_class; ?>">
           <?php if($pager_previous): ?>

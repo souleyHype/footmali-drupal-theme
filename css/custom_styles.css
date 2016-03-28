@@ -1,3 +1,7 @@
+article a {
+    color: #1C9E49;
+}
+
 .social-login {
     position: relative;
     float: left;
@@ -84,6 +88,10 @@
     bottom: 0;
 }
 
+body..mobile-view {
+  position: relative;
+}
+
 .mobile-view .main-nav-mobile .pull {
   margin: 16px 0 5px;
   background: transparent;
@@ -136,7 +144,8 @@
 .mobile-view.not-front article .entry-title,
 .mobile-view.not-front article .entry-meta,
 .mobile-view.not-front article .short-des,
-.mobile-view.not-front article .field-name-body {
+.mobile-view.not-front article .field-name-body,
+.mobile-view #comments {
   padding: 0 20px;
 }
 
@@ -170,6 +179,22 @@
   padding: 5px;
   font-size: 24px;
   font-weight: 900;
+}
+
+.mobile-view #kopa-footer {
+  margin-bottom: 70px;
+}
+.mobile-view #mobile-footer-ad {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  bottom: 0;
+  background-color: #CCCCCC;
+  z-index: 10;
+}
+
+.mobile-view .headlines.responsive-ad {
+  height: 300px;
 }
 
 /**
