@@ -82,7 +82,6 @@ global $theme_path;
 <?php include_once('includes/header.php'); ?>
 
 <div id="main-content">
-
     <div class="wrapper">
 
         <?php print $messages; ?>
@@ -96,6 +95,18 @@ global $theme_path;
 
                 <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 
+                  <?php if(!footmali_ismobile()): ?>
+                  <div class="widget kopa-ads-widget style1" style="margin:0; padding:0;">
+                    <!-- Content wide -->
+                    <?php if (module_exists('adsense')) {
+                      print adsense_display(array(
+                        'format' => '728x90',
+                        'slot' => '5022423913'
+                      ));
+                    } ?>
+                  </div>
+                <?php endif; ?>
+
                 <div class="kopa-breadcrumb">
                     <div class="wrapper clearfix">
                         <?php print $breadcrumb; ?>
@@ -105,8 +116,9 @@ global $theme_path;
 
 
                 <?php print render($page['content']); ?>
-                <?php include('includes/partials/_ad_content_wide.php'); ?>
-
+                <?php if($is_front): ?>
+                  <?php include('includes/partials/_ad_content_wide.php'); ?>
+                <?php endif; ?>
             </div>
             <!-- main-col -->
 
@@ -124,3 +136,22 @@ global $theme_path;
 <!-- main-content -->
 
 <?php include_once('includes/footer.php'); ?>
+<?php if(footmali_ismobile()): ?>
+  <div id="mobile-footer-ad">
+    <button type="button" class="btn btn-default" aria-label="close"
+      style="position: absolute; right: 0; top: 0; z-index: 10;"
+      onclick="jQuery('#mobile-footer-ad').hide(); jQuery('#kopa-footer').css('margin-bottom', '0');">
+        <span class="fa fa-remove" aria-hidden="true"></span>
+    </button>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Mobile Footer Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7538390076513661"
+         data-ad-slot="2487759919"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<?php endif; ?>
