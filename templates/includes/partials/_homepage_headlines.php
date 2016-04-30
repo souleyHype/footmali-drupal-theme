@@ -7,6 +7,7 @@ $index = 1;
         <h3 class="widget-title style12"><?php echo t('Headlines'); ?><span class="ttg"></span></h3>
         <ul class="clearfix">
             <?php foreach($headlines as $article): ?>
+            	<?php if($article->type == 'article'): ?>
                 <li>
                     <article class="entry-item">
                         <div class="entry-thumb">
@@ -27,6 +28,7 @@ $index = 1;
                         <?php echo footmali_render_share_small($article->nid, $article->title); ?>
                     </article>
                 </li>
+            	<?php endif; ?>
                 <?php if($index == 4): ?>
                   <!-- headlines ad -->
                   <li class="headlines responsive-ad">
