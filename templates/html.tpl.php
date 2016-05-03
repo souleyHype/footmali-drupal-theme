@@ -52,6 +52,7 @@ global $theme_path;
 <html lang="<?php print $language->language; ?>">
 <head profile="<?php print $grddl_profile; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="fb:pages" content="59161831864" />
     <?php print $head; ?>
     <title><?php print $head_title; ?></title>
     <?php print $styles; ?>

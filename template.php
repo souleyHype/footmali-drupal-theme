@@ -6,6 +6,12 @@ require_once 'lib/Mobile-Detect/Mobile_Detect.php';
  *Override or insert variables into the html template.
  */
 function footmali_preprocess_html(&$variables) {
+
+	// Add more info to page title
+	$variables['head_title']  = $variables['head_title'];
+	$variables['head_title'] .=' - Les actualités du football malien, les aigles du mali, et la femafoot - Footmali.com';
+
+	// Add additional class to identify mobile view
     if(footmali_ismobile()){
         array_push($variables['classes_array'], 'mobile-view');
     }
