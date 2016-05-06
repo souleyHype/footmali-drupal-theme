@@ -242,6 +242,24 @@ body..mobile-view {
     margin-bottom: 15px;
 }
 
+/**
+* teams views
+*/
+
+.view-id-ligue_1_teams .views-field-title {
+    font-family: "Oswald",sans-serif;
+    color: #333333;
+    font-size: 24px;
+    line-height: 32px;
+    margin-left: 10px;
+}
+
+.view-id-ligue_1_teams .views-field-view-node {
+    float: right;
+    margin-right: 10%;
+    font-family: "Oswald",sans-serif;
+}
+
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;

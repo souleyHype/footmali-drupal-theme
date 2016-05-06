@@ -8,8 +8,12 @@ require_once 'lib/Mobile-Detect/Mobile_Detect.php';
 function footmali_preprocess_html(&$variables) {
 
 	// Add more info to page title
-	$variables['head_title']  = $variables['head_title'];
-	$variables['head_title'] .=' - Les actualités du football malien, les aigles du mali, et la femafoot - Footmali.com';
+	if(!drupal_is_front_page()){
+		$variables['head_title']  = $variables['head_title'];
+		$variables['head_title'] .=' - Les actualités du football malien, les aigles du mali, et la femafoot - Footmali.com';
+	}else{
+		$variables['head_title'] = "Footmali.com - Toute l'actualité du football malien en direct : les aigles du Mali et le championnat malien - Femafoot";
+	}
 
 	// Add additional class to identify mobile view
     if(footmali_ismobile()){
