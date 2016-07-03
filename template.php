@@ -41,6 +41,14 @@ function footmali_preprocess_html(&$variables) {
     );
 }
 
+function footmali_js_alter(&$javascript){
+    // if(footmali_ismobile()){
+    //     unset($javascript['sites/all/themes/footmali-drupal-theme/js/custom.js']);
+    // }else{
+    //     unset($javascript['sites/all/themes/footmali-drupal-theme/js/custom-mobile.js']);
+    // }
+}
+
 function footmali_css_alter(&$css) {
     global $user;
     unset($css[drupal_get_path('module','system').'/system.theme.css']);
@@ -206,6 +214,14 @@ function footmali_form_user_register_form_alter(&$form, &$form_state, $form_id){
     $form['field_newsletter_subscribe'][LANGUAGE_NONE][0]['#type'] = '';
     $form['field_newsletter_subscribe'][LANGUAGE_NONE][0]['#title'] = t( 'Abonnez' );
     $form['field_newsletter_subscribe'][LANGUAGE_NONE][0]['subscribe']['#title'] = t( 'Subscribe to our newsletter' );
+}
+
+function footmali_form_contact_site_form_alter(&$form, &$form_state, &$form_id){
+    $form['name']['#attributes']['class'][] = 'form-control';
+    $form['mail']['#attributes']['class'][] = 'form-control';
+    $form['subject']['#attributes']['class'][] = 'form-control';
+    $form['cid']['#attributes']['class'][] = 'form-control';
+    $form['message']['#attributes']['class'][] = 'form-control';
 }
 
 function footmali_preprocess_views_view(&$vars){

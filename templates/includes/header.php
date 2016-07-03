@@ -51,7 +51,8 @@ global $user;
                 <div class="header-top-list">
                     <ul class="clearfix">
                         <!-- <li><a href="#"><span><i class="fa fa-image"></i><span>photos</span></span></a></li> -->
-                        <li><a href="/video/index"><span><i class="fa fa-play-circle-o"></i><span><?php echo t('Video'); ?></span></span></a></li>
+                        <li><a href="http://www.footmali.com/contact"><span><i class="fa fa-envelope"></i><span>Contacts</span></span></a></li>
+			<li><a href="/video/index"><span><i class="fa fa-play-circle-o"></i><span><?php echo t('Video'); ?></span></span></a></li>
                     </ul>
                 </div>
                 <!-- header-top-list -->

@@ -87,6 +87,7 @@ global $theme_path;
 
     <a href="#" class="scrollup"><span class="fa fa-chevron-up"></span></a>
 
+    <?php print $scripts; ?>
     <!-- Web Font Loader -->
     <script>
        WebFontConfig = {
@@ -144,8 +145,6 @@ global $theme_path;
 
     <!-- Google -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    <?php print $scripts; ?>
 
     <!-- Mailchimp subscribe popup -->
     <?php if($is_front && !footmali_ismobile()) : ?>
