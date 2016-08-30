@@ -746,7 +746,7 @@ function footmali_get_standings($season, $limit=false){
 	}
 
     $expire = strtotime("+4 days", time());
-    //cache_set($cid, $returnArray, $bin, $expire);
+    cache_set($cid, $returnArray, $bin, $expire);
     return $returnArray;
   }
 }
