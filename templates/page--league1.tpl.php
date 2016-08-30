@@ -103,8 +103,11 @@ global $theme_path;
                 </div>
                 <!--/end .breadcrumb-->
                 <?php include('includes/partials/_ad_content_wide.php'); ?>
-                <div class="widget-area-25">
+                <div class="widget-area">
                     <?php include_once('includes/partials/_full_standings.php'); ?>
+                </div>
+                <div class="widget-area-25">
+                    <?php //include_once('includes/partials/_fixtures.php'); ?>
                     <?php include_once('includes/partials/_video_carrousel.php'); ?>
                 </div>
                 <div class="widget-area-26">

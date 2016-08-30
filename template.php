@@ -734,7 +734,7 @@ function footmali_get_standings($season, $limit=false){
 		$query .= "LIMIT {$limit}";
 	}
 
-    $query_result = db_query($query, array(':season' => $season))->fetchAllAssoc('points');
+    $query_result = db_query($query, array(':season' => $season))->fetchAll();
 	$returnArray = array();
 
 	foreach ($query_result as $standing){
@@ -746,7 +746,7 @@ function footmali_get_standings($season, $limit=false){
 	}
 
     $expire = strtotime("+4 days", time());
-    cache_set($cid, $returnArray, $bin, $expire);
+    //cache_set($cid, $returnArray, $bin, $expire);
     return $returnArray;
   }
 }

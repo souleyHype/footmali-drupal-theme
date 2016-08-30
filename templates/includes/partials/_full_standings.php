@@ -29,7 +29,7 @@ $standings = footmali_get_standings('2015-2016');
                   <li>
                       <div class="t-col width3"><strong><?php echo $index; ?></strong></div>
                       <div class="t-col width2">
-                          <strong><?php echo strlen($team->title) < 15 ? $team->title : $team_short_name; ?></strong>
+                          <strong><?php echo strlen($team->title) < 18 ? $team->title : $team_short_name; ?></strong>
                       </div>
                       <div class="t-col width3"><strong><?php echo $row->points; ?></strong></div>
                       <div class="t-col width3 tbl-col"><?php echo $row->played; ?></div>
@@ -67,7 +67,7 @@ $standings = footmali_get_standings('2015-2016');
                   <li>
                       <div class="t-col width3"><strong><?php echo $index; ?></strong></div>
                       <div class="t-col width2">
-                      <strong><?php echo strlen($team->title) < 15 ? $team->title : $team_short_name; ?></strong></div>
+                      <strong><?php echo strlen($team->title) < 18 ? $team->title : $team_short_name; ?></strong></div>
                       <div class="t-col width3"><strong><?php echo $row->points; ?></strong></div>
                       <div class="t-col width3 tbl-col"><?php echo $row->played; ?></div>
                       <div class="t-col width3 tbl-col"><?php echo $row->wins; ?></div>
