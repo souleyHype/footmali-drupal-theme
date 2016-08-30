@@ -42,78 +42,40 @@
 <?php if ($rows): ?>
     <div class="view-content">
 
-        <div class="widget kopa-tab-sync-carousel-widget">
-            <div class="widget kopa-sync-carousel-2-widget">
-                <div class="owl-carousel sync3">
-                    <?php foreach($results as $article): ?>
-                        <?php
-                        $thumbnail_uri = $article->field_field_image[0]['rendered']['#item']['uri'];
-                        $image = '';
+
+        <div class="widget kopa-article-list-widget article-list-9">
+            <ul class="clearfix">
+                <?php foreach($results as $article): ?>
+                    <?php
+                    $thumbnail_uri = $article->field_field_image[0]['rendered']['#item']['uri'];
+                    $image = '';
 
 
-                        if($thumbnail_uri){
-                            $variable = array(
-                                'style_name' => 'content_carrousel_large',
-                                'path' => $thumbnail_uri,
-                                'width' => '',
-                                'height' => '',
-                            );
+                    if($thumbnail_uri){
+                        $variable = array(
+                            'style_name' => 'content_carrousel_thumb',
+                            'path' => $thumbnail_uri,
+                            'width' => '',
+                            'height' => '',
+                        );
 
-                            $image = theme_image_style($variable);
-                        }
-                        ?>
-                        <div class="item">
-                            <article class="entry-item video-post">
-                                <div class="entry-thumb">
-                                    <a href="<?php echo drupal_get_path_alias("node/".$article->nid); ?>"><?php echo ! empty($image) ? $image : ''; ?></a>
-                                </div>
-                                <div class="entry-content">
-                                    <h3 class=""><a href="<?php echo drupal_get_path_alias("node/".$article->nid); ?>"><?php echo $article->node_title; ?></a></h3>
-<!--                                    <div class="content-top">-->
-<!--                                        <h4 class="entry-title"><a href="#"> </a></h4>-->
-<!--                                    </div>-->
-                                </div>
-                            </article>
+                        $image = theme_image_style($variable);
+                    }
+                    ?>
+                <li>
+                    <article class="entry-item">
+                        <div class="entry-thumb">
+                            <a href="<?php echo drupal_get_path_alias("node/".$article->nid); ?>"><?php echo ! empty($image) ? $image : ''; ?></a>
                         </div>
-                    <?php endforeach; ?>
-                </div>
-                <!-- sync3 -->
-                <div class="owl-carousel sync4">
-                    <?php foreach($results as $article): ?>
-                        <?php
-                        $thumbnail_uri = $article->field_field_image[0]['rendered']['#item']['uri'];
-                        $image = '';
-
-
-                        if($thumbnail_uri){
-                            $variable = array(
-                                'style_name' => 'content_carrousel_thumb',
-                                'path' => $thumbnail_uri,
-                                'width' => '',
-                                'height' => '',
-                            );
-
-                            $image = theme_image_style($variable);
-                        }
-                        ?>
-                        <div class="item">
-                            <article class="entry-item video-post">
-                                <div class="entry-thumb">
-                                    <a href="#"><?php echo ! empty($image) ? $image : ''; ?></a>
-                                </div>
-                                <div class="entry-content">
-                                    <h4 class="entry-title"><a href="#"><?php echo $article->node_title; ?></a></h4>
-                                </div>
-                            </article>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <!-- sync4 -->
-            </div>
-            <!-- kopa sync carousel widget -->
+                        <h4 class="entry-title">
+                            <a itemprop="name" href="<?php echo drupal_get_path_alias("node/".$article->nid); ?>"><?php echo $article->node_title; ?></a>
+                        </h4>
+                    </article>
+                </li>
+            <?php endforeach ?>
+            </ul>
         </div>
         <!-- widget -->
-
     </div>
 <?php endif; ?>
-    </div><?php /* class view */ ?>
+</div>
