@@ -102,13 +102,12 @@ global $theme_path;
                     </div>
                 </div>
                 <!--/end .breadcrumb-->
-
+                <?php include('includes/partials/_ad_content_wide.php'); ?>
                 <div class="widget-area-25">
                     <?php include_once('includes/partials/_full_standings.php'); ?>
                     <?php include_once('includes/partials/_video_carrousel.php'); ?>
                 </div>
                 <div class="widget-area-26">
-                    <h3 class="widget-title style12">News</h3>
                     <?php print render($page['content']); ?>
                 </div>
 

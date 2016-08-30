@@ -9,10 +9,10 @@ $standings = footmali_get_standings('2015-2016');
           <div class="widget-content">
               <h3 class="widget-title style17">Poule A</h3>
               <header>
-                  <div class="t-col"><?php echo t('pos'); ?></div>
-                  <div class="t-col width1"><?php echo t('team'); ?></div>
-                  <div class="t-col"><?php echo t('p'); ?></div>
-                  <div class="t-col"><?php echo t('pts'); ?></div>
+                  <div class="t-col"><?php echo t('Pos'); ?></div>
+                  <div class="t-col width1"><?php echo t('Équipe'); ?></div>
+                  <div class="t-col"><?php echo t('J.'); ?></div>
+                  <div class="t-col"><?php echo t('Pts'); ?></div>
               </header>
               <ul class="clearfix">
                 <?php $index = 1;
