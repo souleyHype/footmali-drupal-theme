@@ -673,7 +673,7 @@ function footmali_get_matches($season, $type){
     }
 }
 
-function footmali_get_standings($season, $limit=30){
+function footmali_get_standings($season, $limit=false){
   $cid = 'footmali_get_standings';
   $bin = 'cache';
 
@@ -730,7 +730,9 @@ function footmali_get_standings($season, $limit=30){
 
     $query .= "GROUP BY team ";
     $query .= "ORDER BY pool ASC, points DESC, goal_diff DESC ";
-    $query .= "LIMIT {$limit}";
+    if($limit){
+		$query .= "LIMIT {$limit}";
+	}
 
     $query_result = db_query($query, array(':season' => $season))->fetchAllAssoc('points');
 	$returnArray = array();
