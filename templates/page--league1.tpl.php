@@ -102,11 +102,14 @@ global $theme_path;
                     </div>
                 </div>
                 <!--/end .breadcrumb-->
-
-
-                <?php print render($page['content']); ?>
-
-                <?php include_once('includes/partials/_video_carrousel.php'); ?>
+                <?php include('includes/partials/_ad_content_wide.php'); ?>
+                <div class="widget-area-25">
+                    <?php include_once('includes/partials/_full_standings.php'); ?>
+                    <?php include_once('includes/partials/_video_carrousel.php'); ?>
+                </div>
+                <div class="widget-area-26">
+                    <?php print render($page['content']); ?>
+                </div>
 
             </div>
             <!-- main-col -->

@@ -686,7 +686,8 @@ function footmali_get_standings($season, $limit=30){
     $fixture_query .= "hteam.field_home_team_nid as hometeam, ";
     $fixture_query .= "hscore.field_home_team_score_value as goalsfor, ";
     $fixture_query .= "ascore.field_away_team_score_value as goalsagainst, ";
-    $fixture_query .= "ateam.field_away_team_nid as awayteam ";
+    $fixture_query .= "ateam.field_away_team_nid as awayteam, ";
+	$fixture_query .= "tgroup.name as pool ";
     $fixture_query .= "FROM node as n ";
     $fixture_query .= "JOIN field_data_field_season as s ON n.nid = s.entity_id ";
     $fixture_query .= "JOIN field_data_field_home_team as hteam ON n.nid = hteam.entity_id ";
@@ -698,14 +699,15 @@ function footmali_get_standings($season, $limit=30){
     $fixture_query .= "JOIN field_data_field_competition as mcompetition ON n.nid = mcompetition.entity_id ";
     $fixture_query .= "JOIN taxonomy_term_data as tcompetition ON mcompetition.field_competition_target_id = tcompetition.tid ";
     $fixture_query .= "JOIN field_data_field_country as country ON tcompetition.tid = country.entity_id ";
-
+	$fixture_query .= "JOIN field_data_field_competition_group as mgroup ON n.nid = mgroup.entity_id ";
+	$fixture_query .= "JOIN taxonomy_term_data as tgroup ON mgroup.field_competition_group_target_id = tgroup.tid ";
     $fixture_query .= "WHERE n.type = 'fixture' ";
     $fixture_query .= "AND country.field_country_value = 'Mali' ";
     $fixture_query .= "AND tcompetition.name = 'League 1' ";
     $fixture_query .= "AND mstatus.field_match_played_value = 1 ";
     $fixture_query .= "AND s.field_season_value = :season ";
 
-    $query  = "SELECT team, count(*) played, ";
+    $query  = "SELECT pool, team, count(*) played, ";
     $query .= "count(case when goalsfor > goalsagainst then 1 end) wins, ";
     $query .= "count(case when goalsagainst > goalsfor then 1 end) lost, ";
     $query .= "count(case when goalsfor = goalsagainst then 1 end) draws, ";
@@ -717,24 +719,33 @@ function footmali_get_standings($season, $limit=30){
     $query .= "+ case when goalsfor = goalsagainst then 1 else 0 end ";
     $query .= ") points ";
     $query .= "FROM ( ";
-    $query .=   "SELECT a.hometeam team, a.goalsfor, a.goalsagainst FROM ( ";
+    $query .=   "SELECT a.hometeam team, a.goalsfor, a.goalsagainst, a.pool FROM ( ";
     $query .=       "($fixture_query) a ";
     $query .=   ")  ";
     $query .=   "UNION ALL ";
-    $query .=   "SELECT b.awayteam, b.goalsagainst, b.goalsfor FROM ( ";
+    $query .=   "SELECT b.awayteam, b.goalsagainst, b.goalsfor, b.pool FROM ( ";
     $query .=       "($fixture_query) b ";
     $query .=   ") ";
     $query .= ") AS results ";
 
     $query .= "GROUP BY team ";
-    $query .= "ORDER BY points DESC, goal_diff DESC ";
+    $query .= "ORDER BY pool ASC, points DESC, goal_diff DESC ";
     $query .= "LIMIT {$limit}";
 
     $query_result = db_query($query, array(':season' => $season))->fetchAllAssoc('points');
+	$returnArray = array();
+
+	foreach ($query_result as $standing){
+		if($standing->pool === "Poule A"){
+			$returnArray['pouleA'][] = $standing;
+		}else {
+			$returnArray['pouleB'][] = $standing;
+		}
+	}
 
     $expire = strtotime("+4 days", time());
-    cache_set($cid, $query_result, $bin, $expire);
-    return $query_result;
+    cache_set($cid, $returnArray, $bin, $expire);
+    return $returnArray;
   }
 }
 
